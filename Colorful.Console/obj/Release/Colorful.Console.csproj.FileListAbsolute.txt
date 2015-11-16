@@ -1,0 +1,4 @@
+c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\Colorful.Console\bin\Release\Colorful.Console.dll
+c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\Colorful.Console\bin\Release\Colorful.Console.pdb
+c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\Colorful.Console\obj\Release\Colorful.Console.dll
+c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\Colorful.Console\obj\Release\Colorful.Console.pdb
