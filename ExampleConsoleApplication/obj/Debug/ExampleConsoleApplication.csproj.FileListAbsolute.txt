@@ -1,1 +1,0 @@
-C:\GitHub\Colorful.Console\ExampleConsoleApplication\bin\Debug\ExampleConsoleApplication.exe.config
