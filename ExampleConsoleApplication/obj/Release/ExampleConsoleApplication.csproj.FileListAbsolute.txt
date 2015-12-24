@@ -1,8 +1,0 @@
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\bin\Release\ExampleConsoleApplication.exe.config
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\bin\Release\ExampleConsoleApplication.exe
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\bin\Release\ExampleConsoleApplication.pdb
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\bin\Release\Colorful.Console.dll
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\bin\Release\Colorful.Console.pdb
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\obj\Release\ExampleConsoleApplication.csprojResolveAssemblyReference.cache
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\obj\Release\ExampleConsoleApplication.exe
-c:\users\tom\documents\visual studio 2013\Projects\Colorful.Console\ExampleConsoleApplication\obj\Release\ExampleConsoleApplication.pdb

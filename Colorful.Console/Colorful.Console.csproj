@@ -7,7 +7,7 @@
     <ProjectGuid>{6B8E85E1-7764-47D5-AE30-1E4B9542701B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Colorful.Console</RootNamespace>
+    <RootNamespace>Colorful</RootNamespace>
     <AssemblyName>Colorful.Console</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -33,11 +33,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorAlternator.cs" />
@@ -50,6 +46,13 @@
     <Compile Include="ColorMappingException.cs" />
     <Compile Include="ColorStore.cs" />
     <Compile Include="ExtensionMethods.cs" />
+    <Compile Include="Figlet.cs" />
+    <Compile Include="FigletFont.cs" />
+    <Compile Include="Fonts\FontResources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FontResources.resx</DependentUpon>
+    </Compile>
     <Compile Include="Formatter.cs" />
     <Compile Include="FrequencyBasedColorAlternator.cs" />
     <Compile Include="IPrototypable.cs" />
@@ -65,6 +68,15 @@
     <Compile Include="TextFormatter.cs" />
     <Compile Include="TextPattern.cs" />
     <Compile Include="TextPatternCollection.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Fonts\Small Slant.flf" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Fonts\FontResources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>FontResources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -318,7 +318,7 @@ namespace Colorful
         {
             WriteInColorAlternating(System.Console.Write, value, alternator);
         }
-        
+
         public static void WriteStyled(bool value, StyleSheet styleSheet)
         {
             WriteInColorStyled(WRITE_TRAILER, value, styleSheet);
@@ -1143,6 +1143,49 @@ namespace Colorful
         public static void WriteLineFormatted(string format, Formatter arg0, Formatter arg1, Formatter arg2, Formatter arg3, Color defaultColor)
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format, new Formatter[] { arg0, arg1, arg2, arg3 }, defaultColor);
+        }
+
+        public static void WriteAscii(string value)
+        {
+            WriteAscii(value, null);
+        }
+
+        public static void WriteAscii(string value, FigletFont font)
+        {
+            WriteLine(GetFiglet(font).ToAscii(value));
+        }
+
+        public static void WriteAscii(string value, Color color)
+        {
+            WriteAscii(value, null, color);
+        }
+
+        public static void WriteAscii(string value, FigletFont font, Color color)
+        {
+            WriteLine(GetFiglet(font).ToAscii(value), color);
+        }
+
+        public static void WriteAsciiAlternating(string value, ColorAlternator alternator)
+        {
+            WriteAsciiAlternating(value, null, alternator);
+        }
+
+        public static void WriteAsciiAlternating(string value, FigletFont font, ColorAlternator alternator)
+        {
+            foreach (var line in GetFiglet(font).ToAscii(value).Split('\n'))
+            {
+                WriteLineAlternating(line, alternator);
+            }
+        }
+
+        public static void WriteAsciiStyled(string value, StyleSheet styleSheet)
+        {
+            WriteAsciiStyled(value, null, styleSheet);
+        }
+
+        public static void WriteAsciiStyled(string value, FigletFont font, StyleSheet styleSheet)
+        {
+            WriteLineStyled(GetFiglet(font).ToAscii(value), styleSheet);
         }
 
         public static int Read()

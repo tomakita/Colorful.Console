@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("Colorful.Console")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Wrapper around System.Console. Style your C# console output using Colorful.Console!")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Colorful.Console")]
