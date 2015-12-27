@@ -6,6 +6,10 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Colorful;
 using Console = Colorful.Console;
+using System.Reflection;
+using System.Resources;
+using System.Collections;
+using System.IO;
 
 namespace TestConsole
 {
@@ -16,30 +20,48 @@ namespace TestConsole
             // NOTE: Running all of the following examples at once will result in unexpected 
             //       coloring behavior, as more than 16 different colors are used!
 
-            string[] storyFragments = new string[]
-            {
-                "John went to the store.",
-                "He wanted to buy fruit.",
-                "The security guard wouldn't let him buy fruit.",
-                "John didn't like being harrassed about buying fruit.",
-                "He went to another fruit store.",
-                "At the other fruit store, he selected a ripe piece of fruit.",
-                "A security guard came by and deselected the piece of fruit.",
-                "John selected it again.",
-                "He was determined to buy fruit.",
-                "Until 7 PM, when the store closed."
-            };
+            // Uses default ASCII Figlet font.
+            Console.WriteAscii("Hello World");
+            Console.WriteAsciiAlternating("Hello World", new FrequencyBasedColorAlternator(2, Color.Green, Color.White));
 
-            int r = 225;
-            int g = 255;
-            int b = 250;
-            for (int i = 0; i < 10; i++)
+            // Print out Hello World in all example fonts.
+            var assembly = Assembly.GetExecutingAssembly();
+            foreach (var resourceName in assembly.GetManifestResourceNames())
             {
-                Console.WriteLine(storyFragments[i], Color.FromArgb(r, g, b));
-
-                r -= 18;
-                b -= 9;
+                foreach (DictionaryEntry resource in new ResourceReader(assembly.GetManifestResourceStream(resourceName)))
+                {
+                    var font = FigletFont.Load((Stream)resource.Value);
+                    Figlet figlet = new Figlet(font);
+                    string asciiArt = figlet.ToAscii("Hello World");
+                    Console.WriteLine(asciiArt);
+                    Console.WriteLine();
+                }
             }
+
+            //string[] storyFragments = new string[]
+            //{
+            //    "John went to the store.",
+            //    "He wanted to buy fruit.",
+            //    "The security guard wouldn't let him buy fruit.",
+            //    "John didn't like being harrassed about buying fruit.",
+            //    "He went to another fruit store.",
+            //    "At the other fruit store, he selected a ripe piece of fruit.",
+            //    "A security guard came by and deselected the piece of fruit.",
+            //    "John selected it again.",
+            //    "He was determined to buy fruit.",
+            //    "Until 7 PM, when the store closed."
+            //};
+
+            //int r = 225;
+            //int g = 255;
+            //int b = 250;
+            //for (int i = 0; i < 10; i++)
+            //{
+            //    Console.WriteLine(storyFragments[i], Color.FromArgb(r, g, b));
+
+            //    r -= 18;
+            //    b -= 9;
+            //}
 
             //string dream = " a dream of {0} and {1} and {2} and {3} and {4} and {5} and {6} and {7} and {8} and {9}...";
             ////string[] fruits = new string[]
@@ -81,7 +103,7 @@ namespace TestConsole
             //    " meeeowww",
             //    " meow"
             //};
-            
+
             //ColorAlternatorFactory alternatorFactory = new ColorAlternatorFactory();
             //ColorAlternator alternator = alternatorFactory.GetAlternator(new[] { "hiss", "m[a-z]+w" }, Color.Plum, Color.PaleVioletRed);
 
@@ -124,7 +146,7 @@ namespace TestConsole
             //            return "s'mores";
             //        }
             //    });
-            
+
             //Console.WriteLineStyled(storyAboutRain, styleSheet);
 
             //ColorAlternatorFactory alternatorFactory = new ColorAlternatorFactory();
