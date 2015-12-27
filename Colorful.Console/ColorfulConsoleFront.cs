@@ -145,6 +145,7 @@ namespace Colorful
             }
         }
 
+#if !NET4
         public static bool IsErrorRedirected
         {
             get
@@ -168,6 +169,7 @@ namespace Colorful
                 return System.Console.IsOutputRedirected;
             }
         }
+#endif
 
         public static bool KeyAvailable
         {
