@@ -1,0 +1,75 @@
+{
+  "version": "1.0.4",
+  "title": "Colorful.Console Examples",
+  "description": "Style your C# console output!",
+  "releaseNotes": "Switched to DNX",
+  "authors": [ "Tom Akita", "Muhammad Rehan Saeed" ],
+  "owners": [ "Tom Akita" ],
+  "copyright": "@ Tom Akita. All rights Reserved.",
+  "tags": [ "Style", "Styled", "Output", "Colourful", "Colorful", "Console", "Command", "Line", "ASCII", "Art", "FIGlet" ],
+  "iconUrl": "http://colorfulconsole.com/images/colorful_icon_ngsize.png",
+  "projectUrl": "http://colorfulconsole.com/",
+  "licenseUrl": "https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md",
+
+  "compilationOptions": {
+    "emitEntryPoint": true
+  },
+
+  "dependencies": {
+  },
+
+  "commands": {
+    "ExampleConsoleApplication": "ExampleConsoleApplication"
+  },
+
+  "frameworks": {
+    "net4": {
+      "dependencies": {
+        "Colorful.Console": "1.0.4"
+      },
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0"
+      }
+    },
+    "net45": {
+      "dependencies": {
+        "Colorful.Console": "1.0.4"
+      },
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0"
+      }
+    },
+    "net451": {
+      "dependencies": {
+        "Colorful.Console": "1.0.4"
+      },
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0"
+      }
+    },
+    "net452": {
+      "dependencies": {
+        "Colorful.Console": "1.0.4"
+      },
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0"
+      }
+    },
+    "net46": {
+      "dependencies": {
+        "Colorful.Console": "1.0.4"
+      },
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0"
+      }
+    },
+    "net461": {
+      "dependencies": {
+        "Colorful.Console": "1.0.4"
+      },
+      "frameworkAssemblies": {
+        "System.Drawing": "4.0.0.0"
+      }
+    }
+  }
+}
