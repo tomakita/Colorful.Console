@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,11 +16,11 @@ namespace Colorful
         /// <summary>
         /// A map from System.Drawing.Color to ConsoleColor.
         /// </summary>
-        public Dictionary<Color, ConsoleColor> Colors { get; private set; }
+        public ConcurrentDictionary<Color, ConsoleColor> Colors { get; private set; }
         /// <summary>
         /// A map from ConsoleColor to System.Drawing.Color.
         /// </summary>
-        public Dictionary<ConsoleColor, Color> ConsoleColors { get; private set; }
+        public ConcurrentDictionary<ConsoleColor, Color> ConsoleColors { get; private set; }
 
         /// <summary>
         /// Manages the assignment of System.Drawing.Color objects to ConsoleColor objects.
@@ -28,7 +29,7 @@ namespace Colorful
         /// to ConsoleColor objects.</param>
         /// <param name="consoleColorMap">The Dictionary the ColorStore should use to key ConsoleColor
         /// objects to System.Drawing.Color objects.</param>
-        public ColorStore(Dictionary<Color, ConsoleColor> colorMap, Dictionary<ConsoleColor, Color> consoleColorMap)
+        public ColorStore(ConcurrentDictionary<Color, ConsoleColor> colorMap, ConcurrentDictionary<ConsoleColor, Color> consoleColorMap)
         {
             Colors = colorMap;
             ConsoleColors = consoleColorMap;
@@ -41,7 +42,7 @@ namespace Colorful
         /// <param name="oldColor">The ConsoleColor to be replaced by the new System.Drawing.Color.</param>
         public void Update(Color newColor, ConsoleColor oldColor)
         {
-            Colors.Add(newColor, oldColor);
+            Colors.TryAdd(newColor, oldColor);
             ConsoleColors[oldColor] = newColor;
         }
 
