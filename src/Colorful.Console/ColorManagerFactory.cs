@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -18,7 +19,7 @@ namespace Colorful
             return new ColorManager(colorStore, GetColorMapper(), maxColorChanges, initialColorChangeCountValue);
         }
 
-        public ColorManager GetManager(Dictionary<Color, ConsoleColor> colorMap, Dictionary<ConsoleColor, Color> consoleColorMap, int maxColorChanges, int initialColorChangeCountValue)
+        public ColorManager GetManager(ConcurrentDictionary<Color, ConsoleColor> colorMap, ConcurrentDictionary<ConsoleColor, Color> consoleColorMap, int maxColorChanges, int initialColorChangeCountValue)
         {
             ColorStore colorStore = GetColorStore(colorMap, consoleColorMap);
             ColorMapper colorMapper = GetColorMapper();
@@ -26,7 +27,7 @@ namespace Colorful
             return new ColorManager(colorStore, colorMapper, maxColorChanges, initialColorChangeCountValue);
         }
 
-        private ColorStore GetColorStore(Dictionary<Color, ConsoleColor> colorMap, Dictionary<ConsoleColor, Color> consoleColorMap)
+        private ColorStore GetColorStore(ConcurrentDictionary<Color, ConsoleColor> colorMap, ConcurrentDictionary<ConsoleColor, Color> consoleColorMap)
         {
             return new ColorStore(colorMap, consoleColorMap);
         }

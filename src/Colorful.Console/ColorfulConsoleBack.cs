@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -262,26 +263,25 @@ namespace Colorful
 
         private static ColorStore GetColorStore()
         {
-            Dictionary<Color, ConsoleColor> colorMap = new Dictionary<Color, ConsoleColor>();
-            Dictionary<ConsoleColor, Color> consoleColorMap = new Dictionary<ConsoleColor, Color>
-            {
-                {ConsoleColor.Black, blackEquivalent},
-                {ConsoleColor.Blue, blueEquivalent},
-                {ConsoleColor.Cyan, cyanEquivalent},
-                {ConsoleColor.DarkBlue, darkBlueEquivalent},
-                {ConsoleColor.DarkCyan, darkCyanEquivalent},
-                {ConsoleColor.DarkGray, darkGrayEquivalent},
-                {ConsoleColor.DarkGreen, darkGreenEquivalent},
-                {ConsoleColor.DarkMagenta, darkMagentaEquivalent},
-                {ConsoleColor.DarkRed, darkRedEquivalent},
-                {ConsoleColor.DarkYellow, darkYellowEquivalent},
-                {ConsoleColor.Gray, grayEquivalent},
-                {ConsoleColor.Green, greenEquivalent},
-                {ConsoleColor.Magenta, magentaEquivalent},
-                {ConsoleColor.Red, redEquivalent},
-                {ConsoleColor.White, whiteEquivalent},
-                {ConsoleColor.Yellow, yellowEquivalent}
-            };
+            ConcurrentDictionary<Color, ConsoleColor> colorMap = new ConcurrentDictionary<Color, ConsoleColor>();
+            ConcurrentDictionary<ConsoleColor, Color> consoleColorMap = new ConcurrentDictionary<ConsoleColor, Color>();
+
+            consoleColorMap.TryAdd(ConsoleColor.Black, blackEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.Blue, blueEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.Cyan, cyanEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.DarkBlue, darkBlueEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.DarkCyan, darkCyanEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.DarkGray, darkGrayEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.DarkGreen, darkGreenEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.DarkMagenta, darkMagentaEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.DarkRed, darkRedEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.DarkYellow, darkYellowEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.Gray, grayEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.Green, greenEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.Magenta, magentaEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.Red, redEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.White, whiteEquivalent);
+            consoleColorMap.TryAdd(ConsoleColor.Yellow, yellowEquivalent);
 
             return new ColorStore(colorMap, consoleColorMap);
         }

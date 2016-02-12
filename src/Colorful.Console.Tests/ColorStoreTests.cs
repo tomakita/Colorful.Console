@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,7 +18,7 @@ namespace Colorful.Console.Tests
 
         public static ColorStore GetColorStore()
         {
-            ColorStore colorStore = new ColorStore(new Dictionary<Color, ConsoleColor>(), new Dictionary<ConsoleColor, Color>());
+            ColorStore colorStore = new ColorStore(new ConcurrentDictionary<Color, ConsoleColor>(), new ConcurrentDictionary<ConsoleColor, Color>());
             colorStore.Update(TEST_COLOR, TEST_CONSOLE_COLOR);
 
             return colorStore;
