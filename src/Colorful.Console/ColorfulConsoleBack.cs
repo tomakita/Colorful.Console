@@ -50,6 +50,34 @@ namespace Colorful
             System.Console.ResetColor();
         }
 
+        private static void MapToScreen(StyledString styledString, string trailer)
+        {
+            int rowLength = styledString.CharacterGeometry.GetLength(0);
+            int columnLength = styledString.CharacterGeometry.GetLength(1);
+            for (int row = 0; row < rowLength; row++)
+            {
+                for (int column = 0; column < columnLength; column++)
+                {
+                    System.Console.ForegroundColor = colorManager.GetConsoleColor(styledString.ColorGeometry[row, column]);
+
+                    if (row == rowLength - 1 && column == columnLength - 1)
+                    {
+                        System.Console.Write(styledString.CharacterGeometry[row, column] + trailer);
+                    }
+                    else if (column == columnLength - 1)
+                    {
+                        System.Console.Write(styledString.CharacterGeometry[row, column] + "\r\n");
+                    }
+                    else
+                    {
+                        System.Console.Write(styledString.CharacterGeometry[row, column]);
+                    }
+                }
+            }
+
+            System.Console.ResetColor();
+        }
+
         private static void WriteInColor<T>(Action<T> action, T target, Color color)
         {
             System.Console.ForegroundColor = colorManager.GetConsoleColor(color);
@@ -86,6 +114,45 @@ namespace Colorful
             List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(target.AsString());
 
             MapToScreen(annotationMap, trailer);
+        }
+
+        private static void WriteAsciiInColorStyled(string trailer, StyledString target, StyleSheet styleSheet)
+        {
+            TextAnnotator annotator = new TextAnnotator(styleSheet);
+            List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(target.AbstractValue); // Should eventually be target.AsStyledString() everywhere...?
+
+            PopulateColorGeometry(annotationMap, target);
+
+            MapToScreen(target, trailer);
+        }
+
+        private static void PopulateColorGeometry(IEnumerable<KeyValuePair<string, Color>> annotationMap, StyledString target)
+        {
+            int abstractCharCount = 0;
+            foreach (KeyValuePair<string, Color> fragment in annotationMap)
+            {
+                for (int i = 0; i < fragment.Key.Length; i++)
+                {
+                    // This will run O(n^2) times...but with DP, could be O(n).  
+                    // Just need to keep a third array that keeps track of each abstract char's width, so you never iterate past that.  
+                    // This third array would be one-dimensional.
+
+                    int rowLength = target.CharacterIndexGeometry.GetLength(0);
+                    int columnLength = target.CharacterIndexGeometry.GetLength(1);
+                    for (int row = 0; row < rowLength; row++)
+                    {
+                        for (int column = 0; column < columnLength; column++)
+                        {
+                            if (target.CharacterIndexGeometry[row, column] == abstractCharCount)
+                            {
+                                target.ColorGeometry[row, column] = fragment.Value;
+                            }
+                        }
+                    }
+
+                    abstractCharCount++;
+                }
+            }
         }
 
         private static void WriteChunkInColorStyled(string trailer, char[] buffer, int index, int count, StyleSheet styleSheet)

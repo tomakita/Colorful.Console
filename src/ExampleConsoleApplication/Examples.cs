@@ -32,7 +32,7 @@ namespace TestConsole
                 {
                     var font = FigletFont.Load((Stream)resource.Value);
                     Figlet figlet = new Figlet(font);
-                    string asciiArt = figlet.ToAscii("Hello World");
+                    string asciiArt = figlet.ToAscii("Hello World").ConcreteValue;
                     Console.WriteLine(asciiArt);
                     Console.WriteLine();
                 }

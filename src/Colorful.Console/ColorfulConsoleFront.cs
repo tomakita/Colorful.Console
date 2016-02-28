@@ -909,9 +909,9 @@ namespace Colorful
             WriteInColorAlternating(System.Console.WriteLine, value, alternator);
         }
 
-        public static void WriteLineStyled(object value, StyleSheet styleSheet)
+        public static void WriteLineStyled(StyledString value, StyleSheet styleSheet)
         {
-            WriteInColorStyled(WRITELINE_TRAILER, value, styleSheet);
+            WriteAsciiInColorStyled(WRITELINE_TRAILER, value, styleSheet);
         }
 
         public static void WriteLine(string value)
@@ -1154,7 +1154,7 @@ namespace Colorful
 
         public static void WriteAscii(string value, FigletFont font)
         {
-            WriteLine(GetFiglet(font).ToAscii(value));
+            WriteLine(GetFiglet(font).ToAscii(value).ConcreteValue);
         }
 
         public static void WriteAscii(string value, Color color)
@@ -1164,7 +1164,7 @@ namespace Colorful
 
         public static void WriteAscii(string value, FigletFont font, Color color)
         {
-            WriteLine(GetFiglet(font).ToAscii(value), color);
+            WriteLine(GetFiglet(font).ToAscii(value).ConcreteValue, color);
         }
 
         public static void WriteAsciiAlternating(string value, ColorAlternator alternator)
@@ -1174,7 +1174,7 @@ namespace Colorful
 
         public static void WriteAsciiAlternating(string value, FigletFont font, ColorAlternator alternator)
         {
-            foreach (var line in GetFiglet(font).ToAscii(value).Split('\n'))
+            foreach (var line in GetFiglet(font).ToAscii(value).ConcreteValue.Split('\n'))
             {
                 WriteLineAlternating(line, alternator);
             }

@@ -1,9 +1,9 @@
 {
-  "version": "1.0.4",
+  "version": "1.0.5",
   "title": "Colorful.Console Examples",
   "description": "Style your C# console output!",
   "releaseNotes": "Switched to DNX",
-  "authors": [ "Tom Akita", "Muhammad Rehan Saeed" ],
+  "authors": [ "Tom Akita", "Muhammad Rehan Saeed", "Matt Furden" ],
   "owners": [ "Tom Akita" ],
   "copyright": "@ Tom Akita. All rights Reserved.",
   "tags": [ "Style", "Styled", "Output", "Colourful", "Colorful", "Console", "Command", "Line", "ASCII", "Art", "FIGlet" ],
@@ -25,7 +25,7 @@
   "frameworks": {
     "net4": {
       "dependencies": {
-        "Colorful.Console": "1.0.4"
+        "Colorful.Console": "1.0.5"
       },
       "frameworkAssemblies": {
         "System.Drawing": "4.0.0.0"
@@ -33,7 +33,7 @@
     },
     "net45": {
       "dependencies": {
-        "Colorful.Console": "1.0.4"
+        "Colorful.Console": "1.0.5"
       },
       "frameworkAssemblies": {
         "System.Drawing": "4.0.0.0"
@@ -41,7 +41,7 @@
     },
     "net451": {
       "dependencies": {
-        "Colorful.Console": "1.0.4"
+        "Colorful.Console": "1.0.5"
       },
       "frameworkAssemblies": {
         "System.Drawing": "4.0.0.0"
@@ -49,7 +49,7 @@
     },
     "net452": {
       "dependencies": {
-        "Colorful.Console": "1.0.4"
+        "Colorful.Console": "1.0.5"
       },
       "frameworkAssemblies": {
         "System.Drawing": "4.0.0.0"
@@ -57,7 +57,7 @@
     },
     "net46": {
       "dependencies": {
-        "Colorful.Console": "1.0.4"
+        "Colorful.Console": "1.0.5"
       },
       "frameworkAssemblies": {
         "System.Drawing": "4.0.0.0"
@@ -65,7 +65,7 @@
     },
     "net461": {
       "dependencies": {
-        "Colorful.Console": "1.0.4"
+        "Colorful.Console": "1.0.5"
       },
       "frameworkAssemblies": {
         "System.Drawing": "4.0.0.0"
