@@ -32,16 +32,17 @@ namespace Colorful
         /// <returns></returns>
         internal static string AsString<T>(this T input)
         {
-            // Cast to dynamic due to type inference shortcomings.  If input is an array, 
+            // Cast to dynamic due to type inference shortcomings.  If input is an array,
             // and we pass it to the String.Join method (which takes arguments of type 'string'
             // and 'params object[]'), the compiler will think that String.Join is
             // being passed an array of arrays.  This is not necessarily incorrect, but I think
             // that in most cases, if we're passing an array into String.Join, the intention is
             // for it to be "unrolled" into a collection of the array's elements, rather than the
             // default behavior described previously.
-            return String.Join("", (dynamic)input);
+            return string.Join(string.Empty, (dynamic)input);
         }
 
+        // TODO: NO DYNAMIC IN .NET CORE
         /// <summary>
         /// Takes a single object (which could be a 1-dimensional array) and returns it (or, potentially,
         /// all of its elements) as an element of an array of the corresponding type.

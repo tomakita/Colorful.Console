@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 using Colorful;
 using System.Drawing;
 
 namespace Colorful.Console.Tests
 {
-    [TestFixture]
+    
     public sealed class TextAnnotatorTests
     {
         private static readonly string dummyMatchingString = "cat";
@@ -26,7 +26,7 @@ namespace Colorful.Console.Tests
             return styleSheet;
         }
 
-        [Test]
+        [Fact]
         public void GetAnnotationMap_ReturnsInput_WhenInputAndPatternAreNonoverlapping()
         {
             StyleSheet styleSheet = GetDummyStyleSheet();
@@ -34,10 +34,10 @@ namespace Colorful.Console.Tests
 
             List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(dummyNonMatchingString);
 
-            Assert.AreEqual(annotationMap.Single().Key, dummyNonMatchingString);
+            Assert.Equal(annotationMap.Single().Key, dummyNonMatchingString);
         }
 
-        [Test]
+        [Fact]
         public void GetAnnotationMap_ReturnsThreeMatches_WhenInputAndPatternOverlap()
         {
             StyleSheet styleSheet = GetDummyStyleSheet();
@@ -45,10 +45,10 @@ namespace Colorful.Console.Tests
 
             List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(dummyMatchingString);
 
-            Assert.AreEqual(annotationMap.Count, 3);
+            Assert.Equal(annotationMap.Count, 3);
         }
 
-        [Test]
+        [Fact]
         public void GetAnnotationMap_ReturnsPermutationOfInput()
         {
             StyleSheet styleSheet = GetDummyStyleSheet();
@@ -57,7 +57,7 @@ namespace Colorful.Console.Tests
             List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(dummyMatchingString);
             string mapConcatenated = String.Join("", annotationMap.Select(element => element.Key));
 
-            Assert.AreEqual(mapConcatenated, dummyMatchingString);
+            Assert.Equal(mapConcatenated, dummyMatchingString);
         }
     }
 }

@@ -1,26 +1,43 @@
 {
-  "version": "1.0.5",
+  "version": "2.0.0",
   "title": "Colorful.Console",
   "description": "Style your C# console output!",
-  "releaseNotes": "Switched to DNX",
   "authors": [ "Tom Akita", "Muhammad Rehan Saeed", "Matt Furden" ],
-  "owners": [ "Tom Akita" ],
   "copyright": "@ Tom Akita. All rights Reserved.",
-  "tags": [ "Style", "Styled", "Output", "Colourful", "Colorful", "Console", "Command", "Line", "ASCII", "Art", "FIGlet" ],
-  "iconUrl": "http://colorfulconsole.com/images/colorful_icon_ngsize.png",
-  "projectUrl": "http://colorfulconsole.com/",
-  "licenseUrl": "https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md",
-  "compilationOptions": {
+
+  "packOptions": {
+    "owners": [ "Tom Akita" ],
+    "tags": [ "Style", "Styled", "Output", "Colourful", "Colorful", "Console", "Command", "Line", "ASCII", "Art", "FIGlet" ],
+    "iconUrl": "http://colorfulconsole.com/images/colorful_icon_ngsize.png",
+    "projectUrl": "http://colorfulconsole.com/",
+    "licenseUrl": "https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md",
+    "releaseNotes": "Added support for netstandard"
+  },
+
+  "buildOptions": {
     "keyFile": "cc.snk"
   },
 
   "frameworks": {
+    "netstandard1.5": {
+      "dependencies": {
+        "System.Collections": "4.0.11-rc2-24027",
+        "System.Collections.Concurrent": "4.0.12-rc2-24027",
+        "System.Console": "4.0.0-rc2-24027",
+        "System.Diagnostics.Debug": "4.0.11-rc2-24027",
+        "System.Globalization": "4.0.11-rc2-24027",
+        "System.IO.FileSystem": "4.0.1-rc2-24027",
+        "System.Linq": "4.1.0-rc2-24027",
+        "System.Runtime": "4.1.0-rc2-24027",
+        "System.Runtime.Extensions": "4.1.0-rc2-24027",
+        "System.Runtime.InteropServices": "4.1.0-rc2-24027",
+        "System.Text.RegularExpressions": "4.0.12-rc2-24027"
+      },
+      "imports": "dnxcore50"
+    },
     "net4": {
       "frameworkAssemblies": {
         "System.Drawing": ""
-      },
-      "compilationOptions": {
-        "define": [ "NET4" ]
       }
     },
     "net45": {

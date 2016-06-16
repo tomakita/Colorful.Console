@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 using Colorful;
 using System.Drawing;
 
 namespace Colorful.Console.Tests
 {
-    [TestFixture]
+    
     public sealed class PatternBasedColorAlternatorTests
     {
         private static readonly string dummyPattern = "a";
@@ -21,7 +21,7 @@ namespace Colorful.Console.Tests
             return new PatternBasedColorAlternator<string>(new TextPatternCollection(new[] { dummyPattern }), dummyColors);
         }
 
-        [Test]
+        [Fact]
         public void GetNextColor_ThrowsException_WhenCalledWithNoColorsAssigned()
         {
             PatternBasedColorAlternator<string> alternator = new PatternBasedColorAlternator<string>(new TextPatternCollection(new[] { dummyPattern }));
@@ -29,16 +29,16 @@ namespace Colorful.Console.Tests
             Assert.Throws<InvalidOperationException>(() => alternator.GetNextColor(dummyTarget));
         }
 
-        [Test]
+        [Fact]
         public void GetNextColor_ReturnsFirstColor_OnFirstCall()
         {
             PatternBasedColorAlternator<string> alternator = GetDummyAlternator();
             Color firstColor = alternator.GetNextColor(dummyTarget);
 
-            Assert.AreEqual(firstColor, dummyColors.First());
+            Assert.Equal(firstColor, dummyColors.First());
         }
 
-        [Test]
+        [Fact]
         public void GetNextColor_ReturnsThirdColor_OnThirdCall()
         {
             PatternBasedColorAlternator<string> alternator = GetDummyAlternator();
@@ -46,7 +46,7 @@ namespace Colorful.Console.Tests
             Color secondColor = alternator.GetNextColor(dummyTarget);
             Color thirdColor = alternator.GetNextColor(dummyTarget);
 
-            Assert.AreEqual(thirdColor, dummyColors.Last());
+            Assert.Equal(thirdColor, dummyColors.Last());
         }
     }
 }

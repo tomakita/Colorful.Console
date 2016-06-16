@@ -1,26 +1,16 @@
 {
-  "version": "1.0.5",
-  "title": "Colorful.Console Tests",
-  "description": "Style your C# console output!",
-  "releaseNotes": "Switched to DNX",
-  "authors": [ "Tom Akita", "Muhammad Rehan Saeed", "Matt Furden" ],
-  "owners": [ "Tom Akita" ],
-  "copyright": "@ Tom Akita. All rights Reserved.",
-  "tags": [ "Style", "Styled", "Output", "Colourful", "Colorful", "Console", "Command", "Line", "ASCII", "Art", "FIGlet" ],
-  "iconUrl": "http://colorfulconsole.com/images/colorful_icon_ngsize.png",
-  "projectUrl": "http://colorfulconsole.com/",
-  "licenseUrl": "https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md",
-  "frameworks": {
-    "net4": { },
-    "net45": { },
-    "net451": { },
-    "net452": { },
-    "net46": { },
-    "net461": { }
-  },
+  "version": "1.0.0-*",
+
+  "testRunner": "xunit",
+
   "dependencies": {
-    "Colorful.Console": "1.0.5",
-    "NUnit": "3.0.1",
-    "NUnit.Runners": "3.0.1"
+    "xunit": "2.1.0",
+    "dotnet-test-xunit": "1.0.0-rc2-build10025",
+    "Colorful.Console": "*"
+  },
+
+  "frameworks": {
+    "net461": {
+    }
   }
 }

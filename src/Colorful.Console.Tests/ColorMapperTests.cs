@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
+using Xunit;
 using Colorful;
 using System.Drawing;
 
 namespace Colorful.Console.Tests
 {
-    [TestFixture]
+    
     public sealed class ColorMapperTests
     {
-        [Test]
+        [Fact]
         public void MapColor_ThrowsException_WhenCalledAndConsoleWindowIsntOpen()
         {
             ColorMapper mapper = new ColorMapper();
