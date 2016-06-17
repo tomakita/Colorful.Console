@@ -1255,7 +1255,7 @@ namespace Colorful
             return System.Console.OpenStandardError();
         }
 
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_3
         public static Stream OpenStandardError(int bufferSize)
         {
             return System.Console.OpenStandardError(bufferSize);
@@ -1267,7 +1267,7 @@ namespace Colorful
             return System.Console.OpenStandardInput();
         }
 
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_3
         public static Stream OpenStandardInput(int bufferSize)
         {
             return System.Console.OpenStandardInput(bufferSize);
@@ -1279,7 +1279,7 @@ namespace Colorful
             return System.Console.OpenStandardOutput();
         }
 
-#if !NETSTANDARD1_5
+#if !NETSTANDARD1_3
         public static Stream OpenStandardOutput(int bufferSize)
         {
             return System.Console.OpenStandardOutput(bufferSize);
