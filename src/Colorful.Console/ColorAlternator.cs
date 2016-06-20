@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -16,7 +14,7 @@ namespace Colorful
         /// The set of colors over which to alternate.
         /// </summary>
         public Color[] Colors { get; set; }
-        
+
         protected int nextColorIndex = 0;
 
         /// <summary>

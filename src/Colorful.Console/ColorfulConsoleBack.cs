@@ -133,8 +133,8 @@ namespace Colorful
             {
                 for (int i = 0; i < fragment.Key.Length; i++)
                 {
-                    // This will run O(n^2) times...but with DP, could be O(n).  
-                    // Just need to keep a third array that keeps track of each abstract char's width, so you never iterate past that.  
+                    // This will run O(n^2) times...but with DP, could be O(n).
+                    // Just need to keep a third array that keeps track of each abstract char's width, so you never iterate past that.
                     // This third array would be one-dimensional.
 
                     int rowLength = target.CharacterIndexGeometry.GetLength(0);

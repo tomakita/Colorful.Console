@@ -21,9 +21,9 @@ namespace Colorful
         /// Manages the number of different colors that the Windows console is able to display in a given session.
         /// </summary>
         /// <param name="colorStore">The ColorStore instance in which the ColorManager will store colors.</param>
-        /// <param name="colorMapper">The ColorMapper instance the ColorManager will use to relate different color 
+        /// <param name="colorMapper">The ColorMapper instance the ColorManager will use to relate different color
         /// types to one another.</param>
-        /// <param name="maxColorChanges">The maximum number of color changes allowed by the ColorManager.  It's 
+        /// <param name="maxColorChanges">The maximum number of color changes allowed by the ColorManager.  It's
         /// necessary to keep track of this, because the Windows console can only display 16 different colors in
         /// a given session.</param>
         /// <param name="initialColorChangeCountValue">The number of color changes which have already occurred.</param>
@@ -62,7 +62,7 @@ namespace Colorful
                 if (colorStore.RequiresUpdate(color))
                 {
                     ConsoleColor oldColor = (ConsoleColor)colorChangeCount;
-                    
+
                     colorMapper.MapColor(oldColor, color);
                     colorStore.Update(color, oldColor);
 

@@ -145,7 +145,7 @@ namespace Colorful
             }
         }
 
-#if !NET4
+#if !NET40
         public static bool IsErrorRedirected
         {
             get
@@ -1255,30 +1255,36 @@ namespace Colorful
             return System.Console.OpenStandardError();
         }
 
+#if !NETSTANDARD1_3
         public static Stream OpenStandardError(int bufferSize)
         {
             return System.Console.OpenStandardError(bufferSize);
         }
+#endif
 
         public static Stream OpenStandardInput()
         {
             return System.Console.OpenStandardInput();
         }
 
+#if !NETSTANDARD1_3
         public static Stream OpenStandardInput(int bufferSize)
         {
             return System.Console.OpenStandardInput(bufferSize);
         }
+#endif
 
         public static Stream OpenStandardOutput()
         {
             return System.Console.OpenStandardOutput();
         }
 
+#if !NETSTANDARD1_3
         public static Stream OpenStandardOutput(int bufferSize)
         {
             return System.Console.OpenStandardOutput(bufferSize);
         }
+#endif
 
         public static void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop)
         {
