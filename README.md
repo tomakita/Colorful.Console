@@ -1,4 +1,4 @@
-# Colorful.Console
+# [Colorful.Console](http://colorfulconsole.com/)
 
 **Colorful.Console** is a C# library that wraps around the `System.Console` class, exposing enhanced styling functionality. See http://colorfulconsole.com/ for a more colorful tutorial!
 
