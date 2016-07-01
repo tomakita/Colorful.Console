@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
@@ -94,9 +90,23 @@ namespace Colorful
         /// <param name="newColor">The color to be mapped.</param>
         public void MapColor(ConsoleColor oldColor, Color newColor)
         {
-            // NOTE: The default console colors used are gray (foreground) and black (background).
-
-            MapColor(oldColor, newColor.R, newColor.G, newColor.B);
+#if NETSTANDARD1_3
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+            {
+#endif
+                // NOTE: The default console colors used are gray (foreground) and black (background).
+                MapColor(oldColor, newColor.R, newColor.G, newColor.B);
+#if NETSTANDARD1_3
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
+            {
+                // TODO
+            }
+            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                // TODO
+            }
+#endif
         }
 
         private void MapColor(ConsoleColor color, uint r, uint g, uint b)
