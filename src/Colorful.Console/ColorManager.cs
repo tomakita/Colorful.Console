@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
+using System.Runtime.InteropServices;
 
 namespace Colorful
 {
@@ -53,6 +54,31 @@ namespace Colorful
         /// <returns>The corresponding ConsoleColor.</returns>
         public ConsoleColor GetConsoleColor(Color color)
         {
+            try
+            {
+#if NETSTANDARD1_3
+                if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+#endif
+                    return GetConsoleColorNative(color);
+
+#if NETSTANDARD1_3
+                }
+                else
+                {
+                    return GetConsoleColorCrossPlatform(color);
+                }
+#endif
+            }
+            // If no NETSTANDARD1_3, but still not running on Windows, catch the exception and approximate the requested color.
+            catch (Exception ex)
+            {
+                return GetConsoleColorCrossPlatform(color);
+            }
+        }
+
+        private ConsoleColor GetConsoleColorNative(Color color)
+        {
             if (!CanChangeColor())
             {
                 return colorStore.Colors.Last().Value;
@@ -71,6 +97,11 @@ namespace Colorful
 
                 return colorStore.Colors[color];
             }
+        }
+
+        private ConsoleColor GetConsoleColorCrossPlatform(Color color)
+        {
+            return colorMapper.GetClosestConsoleColor(color.R, color.G, color.B);
         }
 
         private bool CanChangeColor()

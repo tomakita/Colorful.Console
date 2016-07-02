@@ -83,6 +83,32 @@ namespace Colorful
         [DllImport("kernel32.dll", SetLastError = true)]
         private static extern bool SetConsoleScreenBufferInfoEx(IntPtr hConsoleOutput, ref CONSOLE_SCREEN_BUFFER_INFO_EX csbe);
 
+        // Adapted from code that was originally written by Glenn Slayden.
+        public ConsoleColor GetClosestConsoleColor(byte r, byte g, byte b)
+        {
+            ConsoleColor closestConsoleColor = 0;
+            double delta = double.MaxValue;
+
+            foreach (ConsoleColor consoleColor in Enum.GetValues(typeof(ConsoleColor)))
+            {
+                string consoleColorName = Enum.GetName(typeof(ConsoleColor), consoleColor);
+                Color rgbColor = System.Drawing.Color.FromName(consoleColorName == "DarkYellow" ? "Orange" : consoleColorName);
+                double sum = Math.Pow(rgbColor.R - r, 2.0) + Math.Pow(rgbColor.G - g, 2.0) + Math.Pow(rgbColor.B - b, 2.0);
+
+                if (sum == 0.0)
+                {
+                    return consoleColor;
+                }
+                else if (sum < delta)
+                {
+                    delta = sum;
+                    closestConsoleColor = consoleColor;
+                }
+            }
+
+            return closestConsoleColor;
+        }
+
         /// <summary>
         /// Maps a System.Drawing.Color to a System.ConsoleColor.
         /// </summary>
@@ -90,23 +116,8 @@ namespace Colorful
         /// <param name="newColor">The color to be mapped.</param>
         public void MapColor(ConsoleColor oldColor, Color newColor)
         {
-#if NETSTANDARD1_3
-            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-            {
-#endif
-                // NOTE: The default console colors used are gray (foreground) and black (background).
-                MapColor(oldColor, newColor.R, newColor.G, newColor.B);
-#if NETSTANDARD1_3
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.OSX))
-            {
-                // TODO
-            }
-            else if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
-            {
-                // TODO
-            }
-#endif
+            // NOTE: The default console colors used are gray (foreground) and black (background).
+            MapColor(oldColor, newColor.R, newColor.G, newColor.B);
         }
 
         private void MapColor(ConsoleColor color, uint r, uint g, uint b)
