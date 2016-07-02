@@ -120,7 +120,7 @@ for (int i = 0; i < 15; i++)
 ![Alternate Between 2 or More Colors Based on 1 or More Regular Expressions](http://colorfulconsole.com/images/alternator_x1.png)
 
 
-# Style Ppecific Regions of Text
+# Style Specific Regions of Text
 ```
 StyleSheet styleSheet = new StyleSheet(Color.White);
 styleSheet.AddStyle("rain[a-z]*", Color.MediumSlateBlue);
@@ -191,4 +191,4 @@ Console.WriteLine(figlet.ToAscii("cream."), ColorTranslator.FromHtml("#B8DBFF"))
 
 # Usage Notes
 
-**Colorful.Console** can only write to the console in 16 different colors (including the black that's used as the console's background, by default!) in a single console session. This is a limitation of the Windows console itself, and it's one that I wasn't able to work my way around.  If you know of a workaround, let me know!
+**Colorful.Console** can only write to the console in 16 different colors (including the black that's used as the console's background, by default!) in a single console session. This is a limitation of the Windows console itself, and it's one that we weren't able to work our way around.  If you know of a workaround, let us know!
