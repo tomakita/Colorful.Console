@@ -66,14 +66,14 @@ namespace Colorful
                 }
                 else
                 {
-                    return GetConsoleColorCrossPlatform(color);
+                    return color.ToNearestConsoleColor();
                 }
 #endif
             }
             // If no NETSTANDARD1_3, but still not running on Windows, catch the exception and approximate the requested color.
-            catch (Exception ex)
+            catch
             {
-                return GetConsoleColorCrossPlatform(color);
+                return color.ToNearestConsoleColor();
             }
         }
 
@@ -97,11 +97,6 @@ namespace Colorful
 
                 return colorStore.Colors[color];
             }
-        }
-
-        private ConsoleColor GetConsoleColorCrossPlatform(Color color)
-        {
-            return colorMapper.GetClosestConsoleColor(color.R, color.G, color.B);
         }
 
         private bool CanChangeColor()
