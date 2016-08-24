@@ -20,23 +20,51 @@ namespace TestConsole
             // NOTE: Running all of the following examples at once will result in unexpected 
             //       coloring behavior, as more than 16 different colors are used!
 
-            // Uses default ASCII Figlet font.
-            Console.WriteAscii("Hello World");
-            Console.WriteAsciiAlternating("Hello World", new FrequencyBasedColorAlternator(2, Color.Green, Color.White));
-
-            // Print out Hello World in all example fonts.
-            var assembly = Assembly.GetExecutingAssembly();
-            foreach (var resourceName in assembly.GetManifestResourceNames())
+            List<int> ints = new List<int>()
             {
-                foreach (DictionaryEntry resource in new ResourceReader(assembly.GetManifestResourceStream(resourceName)))
-                {
-                    var font = FigletFont.Load((Stream)resource.Value);
-                    Figlet figlet = new Figlet(font);
-                    string asciiArt = figlet.ToAscii("Hello World").ConcreteValue;
-                    Console.WriteLine(asciiArt);
-                    Console.WriteLine();
-                }
-            }
+                7,
+                70,
+                700,
+                7000,
+                70000,
+                700000,
+                7000000,
+                -7000000,
+                -700000,
+                -70000,
+                -7000,
+                -700,
+                -70,
+                -7
+            };
+            Console.WriteLineWithGradient(ints.OrderBy(x => x).ToList(), Color.MediumSpringGreen, Color.BlueViolet, 14);
+
+            //List<char> chars = new List<char>()
+            //{
+            //    'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm',
+            //    'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm',
+            //    'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm',
+            //    'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm'
+            //};
+            //Console.WriteWithGradient(chars, Color.Yellow, Color.Fuchsia, 14);
+
+            // Uses default ASCII Figlet font.
+            //Console.WriteAscii("Hello World");
+            //Console.WriteAsciiAlternating("Hello World", new FrequencyBasedColorAlternator(2, Color.Green, Color.White));
+
+            //// Print out Hello World in all example fonts.
+            //var assembly = Assembly.GetExecutingAssembly();
+            //foreach (var resourceName in assembly.GetManifestResourceNames())
+            //{
+            //    foreach (DictionaryEntry resource in new ResourceReader(assembly.GetManifestResourceStream(resourceName)))
+            //    {
+            //        var font = FigletFont.Load((Stream)resource.Value);
+            //        Figlet figlet = new Figlet(font);
+            //        string asciiArt = figlet.ToAscii("Hello World").ConcreteValue;
+            //        Console.WriteLine(asciiArt);
+            //        Console.WriteLine();
+            //    }
+            //}
 
             //string[] storyFragments = new string[]
             //{

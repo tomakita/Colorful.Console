@@ -297,6 +297,17 @@ namespace Colorful
             MapToScreen(formatMap, trailer);
         }
 
+        private static void DoWithGradient<T>(Action<object, Color> writeAction, List<T> input, Color startColor, Color endColor, int maxColorsInGradient)
+        {
+            GradientGenerator generator = new GradientGenerator();
+            List<StyleClass<T>> gradient = generator.GenerateGradient(input, startColor, endColor, maxColorsInGradient);
+
+            foreach (StyleClass<T> item in gradient)
+            {
+                writeAction(item.Target, item.Color);
+            }
+        }
+
         private static Figlet GetFiglet(FigletFont font = null)
         {
             if (font == null)

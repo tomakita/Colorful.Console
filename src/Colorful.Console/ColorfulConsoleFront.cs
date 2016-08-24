@@ -2,6 +2,7 @@
 using System.Text;
 using System.Drawing;
 using System.IO;
+using System.Collections.Generic;
 
 namespace Colorful
 {
@@ -1185,6 +1186,16 @@ namespace Colorful
         public static void WriteAsciiStyled(string value, FigletFont font, StyleSheet styleSheet)
         {
             WriteLineStyled(GetFiglet(font).ToAscii(value), styleSheet);
+        }
+
+        public static void WriteWithGradient<T>(List<T> input, Color startColor, Color endColor, int maxColorsInGradient = MAX_COLOR_CHANGES)
+        {
+            DoWithGradient(Write, input, startColor, endColor, maxColorsInGradient);
+        }
+
+        public static void WriteLineWithGradient<T>(List<T> input, Color startColor, Color endColor, int maxColorsInGradient = MAX_COLOR_CHANGES)
+        {
+            DoWithGradient(WriteLine, input, startColor, endColor, maxColorsInGradient);
         }
 
         public static int Read()

@@ -189,6 +189,20 @@ Console.WriteLine(figlet.ToAscii("cream."), ColorTranslator.FromHtml("#B8DBFF"))
 ![Convert Text to ASCII Art Using a Default Font](http://colorfulconsole.com/images/ascii_x2.png)
 
 
+# Style Collections With a Gradient
+```
+List<char> chars = new List<char>()
+{
+	'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm',
+	'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm',
+	'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm',
+	'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm'
+};
+Console.WriteWithGradient(chars, Color.Yellow, Color.Fuchsia, 14);
+```
+![Style Collections With a Gradient](http://colorfulconsole.com/images/gradw_x.png)
+
+
 # Usage Notes
 
 **Colorful.Console** can only write to the console in 16 different colors (including the black that's used as the console's background, by default!) in a single console session. This is a limitation of the Windows console itself, and it's one that we weren't able to work our way around.  If you know of a workaround, let us know!
