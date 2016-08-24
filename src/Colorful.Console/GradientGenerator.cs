@@ -8,10 +8,11 @@ namespace Colorful
 {
     public sealed class GradientGenerator
     {
-        public List<StyleClass<T>> GenerateGradient<T>(List<T> input, Color startColor, Color endColor, int maxColorsInGradient)
+        public List<StyleClass<T>> GenerateGradient<T>(IEnumerable<T> input, Color startColor, Color endColor, int maxColorsInGradient)
         {
-            int numberOfGrades = input.Count / maxColorsInGradient;
-            int numberOfGradesRemainder = input.Count % maxColorsInGradient;
+            List<T> inputAsList = input.ToList();
+            int numberOfGrades = inputAsList.Count / maxColorsInGradient;
+            int numberOfGradesRemainder = inputAsList.Count % maxColorsInGradient;
 
             List<StyleClass<T>> gradients = new List<StyleClass<T>>();
             Color previousColor = Color.Empty;
@@ -25,14 +26,14 @@ namespace Colorful
             Func<int, int, T, T, bool> shouldChangeColor = (index, progress, current, previous) => (progress > numberOfGrades - 1 && !current.Equals(previous) || isFirstRun(index));
             Func<int, bool> canChangeColor = changeCount => changeCount < maxColorsInGradient;
 
-            for (int i = 0; i < input.Count; i++)
+            for (int i = 0; i < inputAsList.Count; i++)
             {
-                T currentItem = input[i];
+                T currentItem = inputAsList[i];
                 colorChangeProgress++;
 
                 if (shouldChangeColor(i, colorChangeProgress, currentItem, previousItem) && canChangeColor(colorChangeCount))
                 {
-                    previousColor = GetGradientColor(i, startColor, endColor, input.Count);
+                    previousColor = GetGradientColor(i, startColor, endColor, inputAsList.Count);
                     previousItem = currentItem;
                     colorChangeProgress = resetProgressSymmetrically(colorChangeProgress);
                     colorChangeCount++;

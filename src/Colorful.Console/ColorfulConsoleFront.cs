@@ -1188,12 +1188,12 @@ namespace Colorful
             WriteLineStyled(GetFiglet(font).ToAscii(value), styleSheet);
         }
 
-        public static void WriteWithGradient<T>(List<T> input, Color startColor, Color endColor, int maxColorsInGradient = MAX_COLOR_CHANGES)
+        public static void WriteWithGradient<T>(IEnumerable<T> input, Color startColor, Color endColor, int maxColorsInGradient = MAX_COLOR_CHANGES)
         {
             DoWithGradient(Write, input, startColor, endColor, maxColorsInGradient);
         }
 
-        public static void WriteLineWithGradient<T>(List<T> input, Color startColor, Color endColor, int maxColorsInGradient = MAX_COLOR_CHANGES)
+        public static void WriteLineWithGradient<T>(IEnumerable<T> input, Color startColor, Color endColor, int maxColorsInGradient = MAX_COLOR_CHANGES)
         {
             DoWithGradient(WriteLine, input, startColor, endColor, maxColorsInGradient);
         }
