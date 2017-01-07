@@ -14,6 +14,7 @@ namespace Colorful
         private static ColorStore colorStore;
         private static ColorManagerFactory colorManagerFactory;
         private static ColorManager colorManager;
+        private static Dictionary<string, COLORREF> defaultColorMap;
 
         // Limitation of the Windows console window.
         private const int MAX_COLOR_CHANGES = 16;

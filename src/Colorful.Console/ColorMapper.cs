@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Drawing;
 using System.Runtime.InteropServices;
+using System.Collections.Generic;
 
 namespace Colorful
 {
@@ -24,22 +25,6 @@ namespace Colorful
             internal short Top;
             internal short Right;
             internal short Bottom;
-        }
-
-        [StructLayout(LayoutKind.Sequential)]
-        private struct COLORREF
-        {
-            private uint ColorDWORD;
-
-            internal COLORREF(Color color)
-            {
-                ColorDWORD = (uint)color.R + (((uint)color.G) << 8) + (((uint)color.B) << 16);
-            }
-
-            internal COLORREF(uint r, uint g, uint b)
-            {
-                ColorDWORD = r + (g << 8) + (b << 16);
-            }
         }
 
         [StructLayout(LayoutKind.Sequential)]
@@ -71,7 +56,7 @@ namespace Colorful
             internal COLORREF white;
         }
 
-        const int STD_OUTPUT_HANDLE = -11;                                       // per WinBase.h
+        private const int STD_OUTPUT_HANDLE = -11;                                       // per WinBase.h
         private static readonly IntPtr INVALID_HANDLE_VALUE = new IntPtr(-1);    // per WinBase.h
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -94,22 +79,91 @@ namespace Colorful
             MapColor(oldColor, newColor.R, newColor.G, newColor.B);
         }
 
-        private void MapColor(ConsoleColor color, uint r, uint g, uint b)
+        /// <summary>
+        /// Gets a collection of all 16 colors in the console buffer.
+        /// </summary>
+        /// <returns>Returns all 16 COLORREFs in the console buffer as a dictionary keyed by the COLORREF's alias
+        /// in the buffer's ColorTable.</returns>
+        public Dictionary<string, COLORREF> GetBufferColors()
+        {
+            Dictionary<string, COLORREF> colors = new Dictionary<string, COLORREF>();
+            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);    // 7
+            CONSOLE_SCREEN_BUFFER_INFO_EX csbe = GetBufferInfo(hConsoleOutput);
+
+            colors.Add("black", csbe.black);
+            colors.Add("darkBlue", csbe.darkBlue);
+            colors.Add("darkGreen", csbe.darkGreen);
+            colors.Add("darkCyan", csbe.darkCyan);
+            colors.Add("darkRed", csbe.darkRed);
+            colors.Add("darkMagenta", csbe.darkMagenta);
+            colors.Add("darkYellow", csbe.darkYellow);
+            colors.Add("gray", csbe.gray);
+            colors.Add("darkGray", csbe.darkGray);
+            colors.Add("blue", csbe.blue);
+            colors.Add("green", csbe.green);
+            colors.Add("cyan", csbe.cyan);
+            colors.Add("red", csbe.red);
+            colors.Add("magenta", csbe.magenta);
+            colors.Add("yellow", csbe.yellow);
+            colors.Add("white", csbe.white);
+
+            return colors;
+        }
+
+        /// <summary>
+        /// Sets all 16 colors in the console buffer using colors supplied in a dictionary.
+        /// </summary>
+        /// <param name="colors">A dictionary containing COLORREFs keyed by the COLORREF's alias in the buffer's 
+        /// ColorTable.</param>
+        public void SetBatchBufferColors(Dictionary<string, COLORREF> colors)
+        {
+            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);    // 7
+            CONSOLE_SCREEN_BUFFER_INFO_EX csbe = GetBufferInfo(hConsoleOutput);
+
+            csbe.black = colors["black"];
+            csbe.darkBlue = colors["darkBlue"];
+            csbe.darkGreen = colors["darkGreen"];
+            csbe.darkCyan = colors["darkCyan"];
+            csbe.darkRed = colors["darkRed"];
+            csbe.darkMagenta = colors["darkMagenta"];
+            csbe.darkYellow = colors["darkYellow"];
+            csbe.gray = colors["gray"];
+            csbe.darkGray = colors["darkGray"];
+            csbe.blue = colors["blue"];
+            csbe.green = colors["green"];
+            csbe.cyan = colors["cyan"];
+            csbe.red = colors["red"];
+            csbe.magenta = colors["magenta"];
+            csbe.yellow = colors["yellow"];
+            csbe.white = colors["white"];
+
+            SetBufferInfo(hConsoleOutput, csbe);
+        }
+
+        private CONSOLE_SCREEN_BUFFER_INFO_EX GetBufferInfo(IntPtr hConsoleOutput)
         {
             CONSOLE_SCREEN_BUFFER_INFO_EX csbe = new CONSOLE_SCREEN_BUFFER_INFO_EX();
             csbe.cbSize = (int)Marshal.SizeOf(csbe);                    // 96 = 0x60
 
-            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);    // 7
             if (hConsoleOutput == INVALID_HANDLE_VALUE)
             {
                 throw new ColorMappingException(Marshal.GetLastWin32Error());
             }
 
             bool brc = GetConsoleScreenBufferInfoEx(hConsoleOutput, ref csbe);
+
             if (!brc)
             {
                 throw new ColorMappingException(Marshal.GetLastWin32Error());
             }
+
+            return csbe;
+        }
+
+        private void MapColor(ConsoleColor color, uint r, uint g, uint b)
+        {
+            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);    // 7
+            CONSOLE_SCREEN_BUFFER_INFO_EX csbe = GetBufferInfo(hConsoleOutput);
 
             switch (color)
             {
@@ -163,10 +217,15 @@ namespace Colorful
                     break;
             }
 
+            SetBufferInfo(hConsoleOutput, csbe);
+        }
+
+        private void SetBufferInfo(IntPtr hConsoleOutput, CONSOLE_SCREEN_BUFFER_INFO_EX csbe)
+        {
             csbe.srWindow.Bottom++;
             csbe.srWindow.Right++;
 
-            brc = SetConsoleScreenBufferInfoEx(hConsoleOutput, ref csbe);
+            bool brc = SetConsoleScreenBufferInfoEx(hConsoleOutput, ref csbe);
             if (!brc)
             {
                 throw new ColorMappingException(Marshal.GetLastWin32Error());

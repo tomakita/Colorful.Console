@@ -18,7 +18,7 @@ namespace Colorful.Console.Tests
         public static ColorStore GetColorStore()
         {
             ColorStore colorStore = new ColorStore(new ConcurrentDictionary<Color, ConsoleColor>(), new ConcurrentDictionary<ConsoleColor, Color>());
-            colorStore.Update(TEST_COLOR, TEST_CONSOLE_COLOR);
+            colorStore.Update(TEST_CONSOLE_COLOR, TEST_COLOR);
 
             return colorStore;
         }
@@ -27,7 +27,7 @@ namespace Colorful.Console.Tests
         public void RequiresUpdate_ReturnsFalse_IfColorStoreContainsColor()
         {
             ColorStore colorStore = GetColorStore();
-
+            
             bool requiresUpdate = colorStore.RequiresUpdate(TEST_COLOR);
 
             Assert.False(requiresUpdate);

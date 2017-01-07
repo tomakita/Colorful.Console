@@ -20,24 +20,44 @@ namespace TestConsole
             // NOTE: Running all of the following examples at once will result in unexpected 
             //       coloring behavior, as more than 16 different colors are used!
 
-            List<int> ints = new List<int>()
+            Console.WriteLine("hi", Color.Pink);
+            int r = 225;
+            int g = 255;
+            int b = 250;
+            for (int i = 0; i < 14; i++)
             {
-                7,
-                70,
-                700,
-                7000,
-                70000,
-                700000,
-                7000000,
-                -7000000,
-                -700000,
-                -70000,
-                -7000,
-                -700,
-                -70,
-                -7
-            };
-            Console.WriteLineWithGradient(ints.OrderBy(x => x).ToList(), Color.MediumSpringGreen, Color.BlueViolet, 14);
+                Console.WriteLine(i.ToString(), Color.FromArgb(r, g, b));
+
+                r -= 10;
+                b -= 10;
+            }
+
+            Console.WriteLine("Press any key for color replacement, and note what happens to \"hi\", above!");
+            Console.ReadKey();
+
+            Console.ReplaceColor(Color.Pink, Color.PaleVioletRed);
+
+            Console.WriteLine("bye", Color.PaleVioletRed);
+            Console.WriteLine("bye", Color.Pink);
+
+            //List<int> ints = new List<int>()
+            //{
+            //    7,
+            //    70,
+            //    700,
+            //    7000,
+            //    70000,
+            //    700000,
+            //    7000000,
+            //    -7000000,
+            //    -700000,
+            //    -70000,
+            //    -7000,
+            //    -700,
+            //    -70,
+            //    -7
+            //};
+            //Console.WriteLineWithGradient(ints.OrderBy(x => x).ToList(), Color.MediumSpringGreen, Color.BlueViolet, 14);
 
             //List<char> chars = new List<char>()
             //{

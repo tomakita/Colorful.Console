@@ -38,12 +38,34 @@ namespace Colorful
         /// <summary>
         /// Adds a new System.Drawing.Color to the ColorStore.
         /// </summary>
-        /// <param name="newColor">The System.Drawing.Color to be added to the ColorStore.</param>
         /// <param name="oldColor">The ConsoleColor to be replaced by the new System.Drawing.Color.</param>
-        public void Update(Color newColor, ConsoleColor oldColor)
+        /// <param name="newColor">The System.Drawing.Color to be added to the ColorStore.</param>
+        public void Update(ConsoleColor oldColor, Color newColor)
         {
             Colors.TryAdd(newColor, oldColor);
             ConsoleColors[oldColor] = newColor;
+        }
+
+        /// <summary>
+        /// Replaces one System.Drawing.Color in the ColorStore with another.
+        /// </summary>
+        /// <param name="oldColor">The color to be replaced.</param>
+        /// <param name="newColor">The replacement color.</param>
+        /// <returns>The ConsoleColor key of the System.Drawing.Color object that was replaced in the ColorStore.</returns>
+        public ConsoleColor Replace(Color oldColor, Color newColor)
+        {
+            ConsoleColor consoleColorKey;
+            bool oldColorExistedInColorStore = Colors.TryRemove(oldColor, out consoleColorKey);
+
+            if (!oldColorExistedInColorStore)
+            {
+                throw new ArgumentException("An attempt was made to replace a nonexistent color in the ColorStore!");
+            }
+
+            Colors.TryAdd(newColor, consoleColorKey);
+            ConsoleColors[consoleColorKey] = newColor;
+
+            return consoleColorKey;
         }
 
         /// <summary>

@@ -294,12 +294,11 @@ namespace Colorful
         }
 
         public static event ConsoleCancelEventHandler CancelKeyPress = delegate { };
-
+        
         static Console()
         {
-            colorStore = GetColorStore();
-            colorManagerFactory = new ColorManagerFactory();
-            colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE);
+            defaultColorMap = new ColorMapper().GetBufferColors();
+            ReplaceAllColorsWithDefaults();
 
             System.Console.CancelKeyPress += Console_CancelKeyPress;
         }
@@ -1309,11 +1308,23 @@ namespace Colorful
             System.Console.Clear();
         }
 
+        public static void ReplaceAllColorsWithDefaults()
+        {
+            colorStore = GetColorStore();
+            colorManagerFactory = new ColorManagerFactory();
+            colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE);
+            new ColorMapper().SetBatchBufferColors(defaultColorMap);
+        }
+
+        public static void ReplaceColor(Color oldColor, Color newColor)
+        {
+            colorManager.ReplaceColor(oldColor, newColor);
+        }
+
         public static void Beep(int frequency, int duration)
         {
             System.Console.Beep(frequency, duration);
         }
-
 
         private static void Console_CancelKeyPress(object sender, ConsoleCancelEventArgs e)
         {

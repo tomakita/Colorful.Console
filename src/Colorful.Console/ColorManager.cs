@@ -48,6 +48,17 @@ namespace Colorful
         }
 
         /// <summary>
+        /// Replaces one System.Drawing.Color in the ColorManager with another.
+        /// </summary>
+        /// <param name="oldColor">The color to be replaced.</param>
+        /// <param name="newColor">The replacement color.</param>
+        public void ReplaceColor(Color oldColor, Color newColor)
+        {
+            ConsoleColor consoleColor = colorStore.Replace(oldColor, newColor);
+            colorMapper.MapColor(consoleColor, newColor);
+        }
+
+        /// <summary>
         /// Gets the ConsoleColor mapped to the System.Drawing.Color provided as an argument.
         /// </summary>
         /// <param name="color">The System.Drawing.Color whose ConsoleColor alias should be retrieved.</param>
@@ -79,23 +90,23 @@ namespace Colorful
 
         private ConsoleColor GetConsoleColorNative(Color color)
         {
-            if (!CanChangeColor())
+            if (CanChangeColor() && colorStore.RequiresUpdate(color))
             {
-                return colorStore.Colors.Last().Value;
+                ConsoleColor oldColor = (ConsoleColor)colorChangeCount;
+
+                colorMapper.MapColor(oldColor, color);
+                colorStore.Update(oldColor, color);
+
+                colorChangeCount++;
+            }
+
+            if (colorStore.Colors.ContainsKey(color))
+            {
+                return colorStore.Colors[color];
             }
             else
             {
-                if (colorStore.RequiresUpdate(color))
-                {
-                    ConsoleColor oldColor = (ConsoleColor)colorChangeCount;
-
-                    colorMapper.MapColor(oldColor, color);
-                    colorStore.Update(color, oldColor);
-
-                    colorChangeCount++;
-                }
-
-                return colorStore.Colors[color];
+                return colorStore.Colors.Last().Value;
             }
         }
 
