@@ -205,4 +205,8 @@ Console.WriteWithGradient(chars, Color.Yellow, Color.Fuchsia, 14);
 
 # Usage Notes
 
-**Colorful.Console** can only write to the console in 16 different colors (including the black that's used as the console's background, by default!) in a single console session. This is a limitation of the Windows console itself, and it's one that we weren't able to work our way around.  If you know of a workaround, let us know!
+Console colors can be set back to their defaults using the **Colorful.Console.ReplaceAllColorsWithDefaults** function.
+
+Individual colors in the console's color palette can be replaced using the **Colorful.Console.ReplaceColor** function. 
+
+**Colorful.Console** can only write to the console in 16 different colors (including the black that's used as the console's background, by default!) in a single console session. This is a limitation of the Windows console itself (ref: [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682091(v=vs.85).aspx)), and it's one that we weren't able to work our way around.  If you know of a workaround, let us know!
