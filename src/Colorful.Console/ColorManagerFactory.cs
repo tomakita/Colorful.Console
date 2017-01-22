@@ -10,27 +10,17 @@ namespace Colorful
         {
         }
 
-        public ColorManager GetManager(ColorStore colorStore, int maxColorChanges, int initialColorChangeCountValue)
+        public ColorManager GetManager(ColorStore colorStore, int maxColorChanges, int initialColorChangeCountValue, bool isInCompatibilityMode)
         {
-            return new ColorManager(colorStore, GetColorMapper(), maxColorChanges, initialColorChangeCountValue);
+            return new ColorManager(colorStore, new ColorMapper(), maxColorChanges, initialColorChangeCountValue, isInCompatibilityMode);
         }
 
-        public ColorManager GetManager(ConcurrentDictionary<Color, ConsoleColor> colorMap, ConcurrentDictionary<ConsoleColor, Color> consoleColorMap, int maxColorChanges, int initialColorChangeCountValue)
+        public ColorManager GetManager(ConcurrentDictionary<Color, ConsoleColor> colorMap, ConcurrentDictionary<ConsoleColor, Color> consoleColorMap, int maxColorChanges, int initialColorChangeCountValue, bool isInCompatibilityMode)
         {
-            ColorStore colorStore = GetColorStore(colorMap, consoleColorMap);
-            ColorMapper colorMapper = GetColorMapper();
+            ColorStore colorStore = new ColorStore(colorMap, consoleColorMap);
+            ColorMapper colorMapper = new ColorMapper();
 
-            return new ColorManager(colorStore, colorMapper, maxColorChanges, initialColorChangeCountValue);
-        }
-
-        private ColorStore GetColorStore(ConcurrentDictionary<Color, ConsoleColor> colorMap, ConcurrentDictionary<ConsoleColor, Color> consoleColorMap)
-        {
-            return new ColorStore(colorMap, consoleColorMap);
-        }
-
-        private ColorMapper GetColorMapper()
-        {
-            return new ColorMapper();
+            return new ColorManager(colorStore, colorMapper, maxColorChanges, initialColorChangeCountValue, isInCompatibilityMode);
         }
     }
 }

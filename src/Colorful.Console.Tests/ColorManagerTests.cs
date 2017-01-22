@@ -16,7 +16,7 @@ namespace Colorful.Console.Tests
 
         private ColorManager GetManager(int initialColorChangeCount)
         {
-            return new ColorManager(ColorStoreTests.GetColorStore(), new ColorMapper(), TEST_MAX_CHANGES_ALLOWED, initialColorChangeCount);
+            return new ColorManager(ColorStoreTests.GetColorStore(), new ColorMapper(), TEST_MAX_CHANGES_ALLOWED, initialColorChangeCount, false);
         }
 
         [Fact]

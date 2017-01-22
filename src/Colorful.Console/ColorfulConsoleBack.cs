@@ -362,5 +362,18 @@ namespace Colorful
 
             return new ColorStore(colorMap, consoleColorMap);
         }
+
+        private static void ReplaceAllColorsWithDefaults(bool isInCompatibilityMode)
+        {
+            colorStore = GetColorStore();
+            colorManagerFactory = new ColorManagerFactory();
+            colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE, isInCompatibilityMode);
+
+            // There's no need to do this if in compatibility mode, as more than 16 colors won't be used, anyway.
+            if (!colorManager.IsInCompatibilityMode)
+            {
+                new ColorMapper().SetBatchBufferColors(defaultColorMap);
+            }
+        }
     }
 }

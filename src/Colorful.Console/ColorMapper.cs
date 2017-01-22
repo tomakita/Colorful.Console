@@ -56,7 +56,7 @@ namespace Colorful
             internal COLORREF white;
         }
 
-        private const int STD_OUTPUT_HANDLE = -11;                                       // per WinBase.h
+        private const int STD_OUTPUT_HANDLE = -11;                               // per WinBase.h
         private static readonly IntPtr INVALID_HANDLE_VALUE = new IntPtr(-1);    // per WinBase.h
 
         [DllImport("kernel32.dll", SetLastError = true)]
@@ -117,7 +117,7 @@ namespace Colorful
         /// ColorTable.</param>
         public void SetBatchBufferColors(Dictionary<string, COLORREF> colors)
         {
-            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);    // 7
+            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE); // 7
             CONSOLE_SCREEN_BUFFER_INFO_EX csbe = GetBufferInfo(hConsoleOutput);
 
             csbe.black = colors["black"];
@@ -143,18 +143,18 @@ namespace Colorful
         private CONSOLE_SCREEN_BUFFER_INFO_EX GetBufferInfo(IntPtr hConsoleOutput)
         {
             CONSOLE_SCREEN_BUFFER_INFO_EX csbe = new CONSOLE_SCREEN_BUFFER_INFO_EX();
-            csbe.cbSize = (int)Marshal.SizeOf(csbe);                    // 96 = 0x60
+            csbe.cbSize = (int)Marshal.SizeOf(csbe); // 96 = 0x60
 
             if (hConsoleOutput == INVALID_HANDLE_VALUE)
             {
-                throw new ColorMappingException(Marshal.GetLastWin32Error());
+                throw CreateException(Marshal.GetLastWin32Error());
             }
 
             bool brc = GetConsoleScreenBufferInfoEx(hConsoleOutput, ref csbe);
 
             if (!brc)
             {
-                throw new ColorMappingException(Marshal.GetLastWin32Error());
+                throw CreateException(Marshal.GetLastWin32Error());
             }
 
             return csbe;
@@ -162,7 +162,7 @@ namespace Colorful
 
         private void MapColor(ConsoleColor color, uint r, uint g, uint b)
         {
-            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE);    // 7
+            IntPtr hConsoleOutput = GetStdHandle(STD_OUTPUT_HANDLE); // 7
             CONSOLE_SCREEN_BUFFER_INFO_EX csbe = GetBufferInfo(hConsoleOutput);
 
             switch (color)
@@ -228,7 +228,20 @@ namespace Colorful
             bool brc = SetConsoleScreenBufferInfoEx(hConsoleOutput, ref csbe);
             if (!brc)
             {
-                throw new ColorMappingException(Marshal.GetLastWin32Error());
+                throw CreateException(Marshal.GetLastWin32Error());
+            }
+        }
+
+        private Exception CreateException(int errorCode)
+        {
+            int ERROR_INVALID_HANDLE = 6;
+            if (errorCode == ERROR_INVALID_HANDLE) // Raised if the console is being run via another application, for example.
+            {
+                return new ConsoleAccessException();
+            }
+            else
+            {
+                return new ColorMappingException(errorCode);
             }
         }
     }

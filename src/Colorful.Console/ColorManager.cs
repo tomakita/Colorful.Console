@@ -13,6 +13,12 @@ namespace Colorful
     /// </summary>
     public sealed class ColorManager
     {
+        /// <summary>
+        /// Compatibility mode is used when the Win32 API is not able to access the console. In this case,
+        /// System.Drawing cannot be used.
+        /// </summary>
+        public bool IsInCompatibilityMode { get; private set; }
+
         private ColorMapper colorMapper;
         private ColorStore colorStore;
         private int colorChangeCount;
@@ -28,13 +34,14 @@ namespace Colorful
         /// necessary to keep track of this, because the Windows console can only display 16 different colors in
         /// a given session.</param>
         /// <param name="initialColorChangeCountValue">The number of color changes which have already occurred.</param>
-        public ColorManager(ColorStore colorStore, ColorMapper colorMapper, int maxColorChanges , int initialColorChangeCountValue)
+        public ColorManager(ColorStore colorStore, ColorMapper colorMapper, int maxColorChanges , int initialColorChangeCountValue, bool isInCompatibilityMode)
         {
             this.colorStore = colorStore;
             this.colorMapper = colorMapper;
 
             colorChangeCount = initialColorChangeCountValue;
             this.maxColorChanges = maxColorChanges;
+            IsInCompatibilityMode = isInCompatibilityMode;
         }
 
         /// <summary>
@@ -54,8 +61,11 @@ namespace Colorful
         /// <param name="newColor">The replacement color.</param>
         public void ReplaceColor(Color oldColor, Color newColor)
         {
-            ConsoleColor consoleColor = colorStore.Replace(oldColor, newColor);
-            colorMapper.MapColor(consoleColor, newColor);
+            if (!IsInCompatibilityMode)
+            {
+                ConsoleColor consoleColor = colorStore.Replace(oldColor, newColor);
+                colorMapper.MapColor(consoleColor, newColor);
+            }
         }
 
         /// <summary>
@@ -65,6 +75,11 @@ namespace Colorful
         /// <returns>The corresponding ConsoleColor.</returns>
         public ConsoleColor GetConsoleColor(Color color)
         {
+            if (IsInCompatibilityMode)
+            {
+                return color.ToNearestConsoleColor();
+            }
+
             try
             {
 #if NETSTANDARD1_3

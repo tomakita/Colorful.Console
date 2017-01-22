@@ -297,9 +297,17 @@ namespace Colorful
         
         static Console()
         {
-            defaultColorMap = new ColorMapper().GetBufferColors();
-            ReplaceAllColorsWithDefaults();
+            bool isInCompatibilityMode = false;
+            try
+            {
+                defaultColorMap = new ColorMapper().GetBufferColors();
+            }
+            catch (ConsoleAccessException ex)
+            {
+                isInCompatibilityMode = true;
+            }
 
+            ReplaceAllColorsWithDefaults(isInCompatibilityMode);
             System.Console.CancelKeyPress += Console_CancelKeyPress;
         }
 
@@ -1312,8 +1320,15 @@ namespace Colorful
         {
             colorStore = GetColorStore();
             colorManagerFactory = new ColorManagerFactory();
-            colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE);
-            new ColorMapper().SetBatchBufferColors(defaultColorMap);
+            // Below, we access a property of the colorManager.  We assume that it has already been instantiated, since it gets instantiated in
+            // this class's static ctor.
+            colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE, colorManager.IsInCompatibilityMode);
+
+            // There's no need to do this if in compatibility mode, as more than 16 colors won't be used, anyway.
+            if (!colorManager.IsInCompatibilityMode)
+            {
+                new ColorMapper().SetBatchBufferColors(defaultColorMap);
+            }
         }
 
         public static void ReplaceColor(Color oldColor, Color newColor)
