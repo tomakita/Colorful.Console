@@ -553,7 +553,7 @@ namespace Colorful
 
         public static void Write(string format, object arg0)
         {
-            System.Console.WriteLine(format, arg0);
+            System.Console.Write(format, arg0);
         }
 
         public static void Write(string format, object arg0, Color color)
