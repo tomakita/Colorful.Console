@@ -27,6 +27,8 @@
         {
             if (value == null) { throw new ArgumentNullException(nameof(value)); }
 
+            if (Encoding.UTF8.GetByteCount(value) != value.Length) { throw new ArgumentException("String contains non-ascii characters"); }
+
             StringBuilder stringBuilder = new StringBuilder();
 
             int stringWidth = GetStringWidth(font, value);
