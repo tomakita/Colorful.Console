@@ -74,7 +74,7 @@
         {
             if (fontContent == null) { throw new ArgumentNullException(nameof(fontContent)); }
 
-            return Parse(fontContent.Split(new string[] { Environment.NewLine }, StringSplitOptions.None));
+            return Parse(fontContent.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
         }
 
         public static FigletFont Parse(IEnumerable<string> fontLines)
