@@ -79,10 +79,9 @@ namespace Colorful
 
         private static void WriteInColor<T>(Action<T> action, T target, Color color)
         {
-            var oldSystemColor = System.Console.ForegroundColor;
             System.Console.ForegroundColor = colorManager.GetConsoleColor(color);
             action.Invoke(target);
-            System.Console.ForegroundColor = oldSystemColor;
+            System.Console.ResetColor();
         }
 
         private static void WriteChunkInColor(Action<string> action, char[] buffer, int index, int count, Color color)

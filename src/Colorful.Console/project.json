@@ -1,0 +1,71 @@
+{
+  "version": "1.0.7",
+  "title": "Colorful.Console",
+  "description": "Style your C# console output!",
+  "authors": [ "Tom Akita", "Muhammad Rehan Saeed", "Matt Furden" ],
+  "copyright": "@ Tom Akita. All rights Reserved.",
+
+  "packOptions": {
+    "owners": [ "Tom Akita" ],
+    "tags": [ "Style", "Styled", "Output", "Colourful", "Colorful", "Console", "Command", "Line", "ASCII", "Art", "FIGlet" ],
+    "iconUrl": "http://colorfulconsole.com/images/colorful_icon_ngsize.png",
+    "projectUrl": "http://colorfulconsole.com/",
+    "licenseUrl": "https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md",
+    "releaseNotes": "Added compatibility mode"
+  },
+
+  "buildOptions": {
+    //"keyFile": "cc.snk"
+  },
+
+  "frameworks": {
+    "netstandard1.3": {
+      "dependencies": {
+        "CoreCompat.System.Drawing": "1.0.0-beta006",
+        "Microsoft.CSharp": "4.0.1",
+        "System.Collections": "4.0.11",
+        "System.Collections.Concurrent": "4.0.12",
+        "System.Console": "4.0.0",
+        "System.Diagnostics.Debug": "4.0.11",
+        "System.Dynamic.Runtime": "4.0.11",
+        "System.Globalization": "4.0.11",
+        "System.IO.FileSystem": "4.0.1",
+        "System.Linq": "4.1.0",
+        "System.Runtime": "4.1.0",
+        "System.Runtime.Extensions": "4.1.0",
+        "System.Runtime.InteropServices": "4.1.0",
+        "System.Text.RegularExpressions": "4.1.0"
+      }
+    },
+    "net4": {
+      "frameworkAssemblies": {
+        "System.Drawing": ""
+      }
+    },
+    "net45": {
+      "frameworkAssemblies": {
+        "System.Drawing": ""
+      }
+    },
+    "net451": {
+      "frameworkAssemblies": {
+        "System.Drawing": ""
+      }
+    },
+    "net452": {
+      "frameworkAssemblies": {
+        "System.Drawing": ""
+      }
+    },
+    "net46": {
+      "frameworkAssemblies": {
+        "System.Drawing": ""
+      }
+    },
+    "net461": {
+      "frameworkAssemblies": {
+        "System.Drawing": ""
+      }
+    }
+  }
+}
