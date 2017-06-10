@@ -1,20 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25123.0
+# Visual Studio 15
+VisualStudioVersion = 15.0.26430.6
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{23EF115A-EF43-400D-96AC-DD7219C6ED1D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{1A8B6A51-5D03-4AC8-B87A-AE99109A6E53}"
-	ProjectSection(SolutionItems) = preProject
-		global.json = global.json
-	EndProjectSection
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Colorful.Console", "src\Colorful.Console\Colorful.Console.xproj", "{728892AA-0890-46D9-9365-5F359229230E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colorful.Console", "src\Colorful.Console\Colorful.Console.csproj", "{728892AA-0890-46D9-9365-5F359229230E}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Colorful.Console.Tests", "src\Colorful.Console.Tests\Colorful.Console.Tests.xproj", "{1ADC83F4-BC90-45C8-BAE5-0EE674C0E27B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Colorful.Console.Tests", "src\Colorful.Console.Tests\Colorful.Console.Tests.csproj", "{1ADC83F4-BC90-45C8-BAE5-0EE674C0E27B}"
 EndProject
-Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "ExampleConsoleApplication", "src\ExampleConsoleApplication\ExampleConsoleApplication.xproj", "{E69FFE1E-88DF-47BA-B878-C8D737369DEF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ExampleConsoleApplication", "src\ExampleConsoleApplication\ExampleConsoleApplication.csproj", "{E69FFE1E-88DF-47BA-B878-C8D737369DEF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
