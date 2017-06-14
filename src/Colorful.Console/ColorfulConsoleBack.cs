@@ -3,6 +3,8 @@ using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Drawing;
+using System.Threading.Tasks;
+
 
 namespace Colorful
 {
@@ -27,26 +29,37 @@ namespace Colorful
         private static readonly string WRITELINE_TRAILER = "\r\n";
         private static readonly string WRITE_TRAILER = "";
 
+#if !NET40
+        private static TaskQueue Queue { get; } = new TaskQueue();
+#endif
+
         private static void MapToScreen(IEnumerable<KeyValuePair<string, Color>> styleMap, string trailer)
         {
-            int writeCount = 1;
-            foreach (KeyValuePair<string, Color> textChunk in styleMap)
+#if !NET40
+            Queue.Enqueue(() => Task.Factory.StartNew(() =>
             {
-                System.Console.ForegroundColor = colorManager.GetConsoleColor(textChunk.Value);
-
-                if (writeCount == styleMap.Count())
+#endif
+                int writeCount = 1;
+                foreach (KeyValuePair<string, Color> textChunk in styleMap)
                 {
-                    System.Console.Write(textChunk.Key + trailer);
-                }
-                else
-                {
-                    System.Console.Write(textChunk.Key);
+                    System.Console.ForegroundColor = colorManager.GetConsoleColor(textChunk.Value);
+
+                    if (writeCount == styleMap.Count())
+                    {
+                        System.Console.Write(textChunk.Key + trailer);
+                    }
+                    else
+                    {
+                        System.Console.Write(textChunk.Key);
+                    }
+
+                    writeCount++;
                 }
 
-                writeCount++;
-            }
-
-            System.Console.ResetColor();
+                System.Console.ResetColor();
+#if !NET40
+            })).Wait();
+#endif
         }
 
         private static void MapToScreen(StyledString styledString, string trailer)
