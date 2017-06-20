@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using Colorful;
 using Console = Colorful.Console;
 using System.Reflection;
 using System.Resources;
 using System.Collections;
 using System.IO;
+using Colorful;
 
 namespace TestConsole
 {
@@ -19,6 +19,19 @@ namespace TestConsole
         {
             // NOTE: Running all of the following examples at once will result in unexpected 
             //       coloring behavior, as more than 16 different colors are used!
+
+            for(int rr = 0; rr < 255; rr+=25)
+            {
+                for (int gg=0; gg < 255; gg+= 25)
+                {
+                    for (int bb = 0; bb < 255; bb+= 25)
+                    {
+                        //VirtualTerminalConsole.SetForegroundColor(Color.Pink);
+                        VirtualTerminalConsole.SetForegroundColor(Color.FromArgb(rr, gg, bb));
+                        Console.Write("*");
+                    }
+                }
+            }
 
             Console.WriteLine("hi", Color.Pink);
             int r = 225;
