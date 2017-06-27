@@ -4,13 +4,13 @@
     <Description>Style your C# console output!</Description>
     <Copyright>@ Tom Akita. All rights Reserved.</Copyright>
     <AssemblyTitle>Colorful.Console</AssemblyTitle>
-    <VersionPrefix>1.0.7</VersionPrefix>
+    <VersionPrefix>1.1</VersionPrefix>
     <Authors>Tom Akita;Muhammad Rehan Saeed;Matt Furden</Authors>
     <TargetFrameworks>netstandard1.3;net40;net45;net451;net452;net46;net461</TargetFrameworks>
     <AssemblyName>Colorful.Console</AssemblyName>
     <PackageId>Colorful.Console</PackageId>
     <PackageTags>Style;Styled;Output;Colourful;Colorful;Console;Command;Line;ASCII;Art;FIGlet</PackageTags>
-    <PackageReleaseNotes>Added compatibility mode</PackageReleaseNotes>
+    <PackageReleaseNotes>Bug fixes</PackageReleaseNotes>
     <PackageIconUrl>http://colorfulconsole.com/images/colorful_icon_ngsize.png</PackageIconUrl>
     <PackageProjectUrl>http://colorfulconsole.com/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md</PackageLicenseUrl>
@@ -20,6 +20,9 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <Version>1.1</Version>
+    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">

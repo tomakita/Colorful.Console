@@ -4,14 +4,14 @@
     <Description>Style your C# console output!</Description>
     <Copyright>@ Tom Akita. All rights Reserved.</Copyright>
     <AssemblyTitle>Colorful.Console Examples</AssemblyTitle>
-    <VersionPrefix>1.0.7</VersionPrefix>
+    <VersionPrefix>1.1</VersionPrefix>
     <Authors>Tom Akita;Muhammad Rehan Saeed;Matt Furden</Authors>
     <TargetFrameworks>net40;net45;net451;net452;net46;net461</TargetFrameworks>
     <AssemblyName>ExampleConsoleApplication</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ExampleConsoleApplication</PackageId>
     <PackageTags>Style;Styled;Output;Colourful;Colorful;Console;Command;Line;ASCII;Art;FIGlet</PackageTags>
-    <PackageReleaseNotes>Added compatibility mode</PackageReleaseNotes>
+    <PackageReleaseNotes>Bug fixes</PackageReleaseNotes>
     <PackageIconUrl>http://colorfulconsole.com/images/colorful_icon_ngsize.png</PackageIconUrl>
     <PackageProjectUrl>http://colorfulconsole.com/</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md</PackageLicenseUrl>
@@ -21,6 +21,7 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
+    <Version>1.1</Version>
   </PropertyGroup>
 
   <ItemGroup>

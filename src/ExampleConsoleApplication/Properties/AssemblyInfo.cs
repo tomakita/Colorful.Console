@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("ExampleConsoleApplication")]
-[assembly: AssemblyCopyright("Copyright © Tom Akita 2016")]
+[assembly: AssemblyCopyright("Copyright © Tom Akita 2017")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
