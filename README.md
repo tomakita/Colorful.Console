@@ -1,4 +1,5 @@
 # [Colorful.Console](http://colorfulconsole.com/)
+[![Build status](https://ci.appveyor.com/api/projects/status/hf7y1un65mdfkfbx?svg=true)](https://ci.appveyor.com/project/tomakita/colorful-console)
 
 **Colorful.Console** is a C# library that wraps around the `System.Console` class, exposing enhanced styling functionality. See http://colorfulconsole.com/ for a more colorful tutorial!
 
