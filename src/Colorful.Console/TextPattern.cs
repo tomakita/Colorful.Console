@@ -31,7 +31,7 @@ namespace Colorful
         /// <param name="input">The string to which the TextPattern instance should be compared.</param>
         /// <returns>Returns a collection of the locations in the string under comparison that
         /// match the TextPattern instance.</returns>
-        public override IEnumerable<MatchLocation> GetMatches(string input)
+        public override IEnumerable<MatchLocation> GetMatchLocations(string input)
         {
             MatchCollection matches = regexPattern.Matches(input);
 
@@ -48,6 +48,27 @@ namespace Colorful
                 MatchLocation location = new MatchLocation(beginning, end);
 
                 yield return location;
+            }
+        }
+
+        /// <summary>
+        /// Finds matches between the TextPattern instance and a given object.
+        /// </summary>
+        /// <param name="input">The string to which the TextPattern instance should be compared.</param>
+        /// <returns>Returns a collection of the locations in the string under comparison that
+        /// match the TextPattern instance.</returns>
+        public override IEnumerable<string> GetMatches(string input)
+        {
+            MatchCollection matches = regexPattern.Matches(input);
+
+            if (matches.Count == 0)
+            {
+                yield break;
+            }
+
+            foreach (Match match in matches)
+            {
+                yield return match.Value;
             }
         }
     }

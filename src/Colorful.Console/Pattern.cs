@@ -27,12 +27,20 @@ namespace Colorful
         }
 
         /// <summary>
-        /// Finds matches between the Pattern instance and a given object.
+        /// Finds the locations of matches between the Pattern instance and a given object.
         /// </summary>
         /// <param name="input">The object to which the Pattern instance should be compared.</param>
         /// <returns>Returns a collection of the locations in the object under comparison that
         /// match the Pattern instance.</returns>
-        public abstract IEnumerable<MatchLocation> GetMatches(T input);
+        public abstract IEnumerable<MatchLocation> GetMatchLocations(T input);
+
+        /// <summary>
+        /// Finds matches between the Pattern instance and a given object.
+        /// </summary>
+        /// <param name="input">The object to which the Pattern instance should be compared.</param>
+        /// <returns>Returns a collection of tokens in the object under comparison that
+        /// match the Pattern instance.</returns>
+        public abstract IEnumerable<T> GetMatches(T input);
 
         public bool Equals(Pattern<T> other)
         {

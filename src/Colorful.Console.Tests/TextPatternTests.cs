@@ -15,20 +15,39 @@ namespace Colorful.Console.Tests
         private static readonly string dummyRegexPattern = "[0-9]";
 
         [Fact]
-        public void GetMatches_ReturnsOneMatchLocation_WhenIdenticalStringIsMatchedAgainst()
+        public void GetMatchLocations_ReturnsOneMatchLocation_WhenIdenticalStringIsMatchedAgainst()
         {
             TextPattern pattern = new TextPattern(dummyString);
 
-            Assert.Equal(pattern.GetMatches(dummyString).Count(), 1);
+            Assert.Equal(pattern.GetMatchLocations(dummyString).Count(), 1);
         }
 
         [Fact]
-        public void GetMatches_ReturnsThreeMatchLocations_When666IsMatchedAgainst()
+        public void GetMatchLocations_ReturnsThreeMatchLocations_When666IsMatchedAgainst()
         {
             string matchTarget = "666";
             TextPattern pattern = new TextPattern(dummyRegexPattern);
 
-            Assert.Equal(pattern.GetMatches(matchTarget).Count(), 3);
+            Assert.Equal(pattern.GetMatchLocations(matchTarget).Count(), 3);
+        }
+
+        [Fact]
+        public void GetMatches_ReturnsExpectedMatches_When012IsMatchedAgainst()
+        {
+            string matchTarget = "012";
+            TextPattern pattern = new TextPattern(dummyRegexPattern);
+            List<string> matches = pattern.GetMatches(matchTarget).ToList();
+
+            bool allMatch = true;
+            for (int i = 0; i < matches.Count; i++)
+            {
+                if (i != int.Parse(matches[i]))
+                {
+                    allMatch = false;
+                }
+            }
+
+            Assert.True(allMatch);
         }
     }
 }

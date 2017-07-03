@@ -50,7 +50,7 @@ namespace Colorful
 
             foreach (StyleClass<TextPattern> pattern in styleSheet.Styles)
             {
-                foreach (MatchLocation location in pattern.Target.GetMatches(input))
+                foreach (MatchLocation location in pattern.Target.GetMatchLocations(input))
                 {
                     if (locations.Contains(location))
                     {

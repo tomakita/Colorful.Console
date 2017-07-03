@@ -43,7 +43,7 @@ namespace Colorful
         /// the input string.</returns>
         public override bool MatchFound(string input)
         {
-            return patterns.Any(pattern => pattern.GetMatches(input).Count() > 0);
+            return patterns.Any(pattern => pattern.GetMatchLocations(input).Count() > 0);
         }
     }
 }

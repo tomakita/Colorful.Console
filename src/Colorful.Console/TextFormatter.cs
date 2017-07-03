@@ -56,13 +56,16 @@ namespace Colorful
         public List<KeyValuePair<string, Color>> GetFormatMap(string input, object[] args, Color[] colors)
         {
             List<KeyValuePair<string, Color>> formatMap = new List<KeyValuePair<string, Color>>();
-            List<MatchLocation> locations = textPattern.GetMatches(input).ToList();
+            List<MatchLocation> locations = textPattern.GetMatchLocations(input).ToList();
+            List<string> indices = textPattern.GetMatches(input).ToList();
 
             TryExtendColors(ref args, ref colors);
 
             int chocolateEnd = 0;
             for (int i = 0; i < locations.Count(); i++)
 			{
+                int styledIndex = int.Parse(indices[i].TrimStart('{').TrimEnd('}'));
+
                 int vanillaStart = 0;
                 if (i > 0)
                 {
@@ -73,10 +76,10 @@ namespace Colorful
                 chocolateEnd = locations[i].End;
 
                 string vanilla = input.Substring(vanillaStart, vanillaEnd - vanillaStart);
-                string chocolate = args[i].ToString();
+                string chocolate = args[styledIndex].ToString();
 
                 formatMap.Add(new KeyValuePair<string, Color>(vanilla, defaultColor));
-                formatMap.Add(new KeyValuePair<string, Color>(chocolate, colors[i]));
+                formatMap.Add(new KeyValuePair<string, Color>(chocolate, colors[styledIndex]));
 			}
 
             if (chocolateEnd < input.Length)
