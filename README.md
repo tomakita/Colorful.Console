@@ -7,12 +7,12 @@
 
 # How to Get It
 
-- Download [Colorful.Console](https://www.nuget.org/packages/Colorful.Console) from NuGet.
-- Perform a Git Clone
-> git Clone https://github.com/tomakita/Colorful.Console.git
+- Download [`Colorful.Console`](https://www.nuget.org/packages/Colorful.Console) from NuGet.
+- Perform a Git clone
+> git clone https://github.com/tomakita/Colorful.Console.git
 
 # Basic Usage
-```
+```c#
 using System;
 using System.Drawing;
 using Console = Colorful.Console;
@@ -25,7 +25,7 @@ Console.WriteLine("console in default");
 
 
 # Write With Full System.Drawing.Color Support
-```
+```c#
 int r = 225;
 int g = 255;
 int b = 250;
@@ -41,7 +41,7 @@ for (int i = 0; i < 10; i++)
 
 
 # Format Text Using Two Colors
-```
+```c#
 string dream = "a dream of {0} and {1} and {2} and {3} and {4} and {5} and {6} and {7} and {8} and {9}...";
 string[] fruits = new string[]
 {
@@ -63,7 +63,7 @@ Console.WriteLineFormatted(dream, Color.LightGoldenrodYellow, Color.Gray, fruits
 
 
 # Format Text Using Several Colors
-```
+```c#
 string dream = "a dream of {0} and {1} and {2} and {3} and {4} and {5} and {6} and {7} and {8} and {9}...";
 Formatter[] fruits = new Formatter[]
 {
@@ -85,7 +85,7 @@ Console.WriteLineFormatted(dream, Color.Gray, fruits);
 
 
 # Alternate Between 2 or More Colors Based on Number of Console Writes
-```
+```c#
 ColorAlternatorFactory alternatorFactory = new ColorAlternatorFactory();
 ColorAlternator alternator = alternatorFactory.GetAlternator(2, Color.Plum, Color.PaleVioletRed);
 
@@ -98,7 +98,7 @@ for (int i = 0; i < 15; i++)
 
 
 # Alternate Between 2 or More Colors Based on 1 or More Regular Expressions
-```
+```c#
 ColorAlternatorFactory alternatorFactory = new ColorAlternatorFactory();
 ColorAlternator alternator = alternatorFactory.GetAlternator(new[] { "hiss", "m[a-z]+w" }, Color.Plum, Color.PaleVioletRed);
 
@@ -122,7 +122,7 @@ for (int i = 0; i < 15; i++)
 
 
 # Style Specific Regions of Text
-```
+```c#
 StyleSheet styleSheet = new StyleSheet(Color.White);
 styleSheet.AddStyle("rain[a-z]*", Color.MediumSlateBlue);
 
@@ -132,7 +132,7 @@ Console.WriteLineStyled(storyAboutRain, styleSheet);
 
 
 # Style Specific Regions of Text, Performing a Simple Transformation
-```
+```c#
 StyleSheet styleSheet = new StyleSheet(Color.White);
 styleSheet.AddStyle("rain[a-z]*", Color.MediumSlateBlue, match => match.ToUpper());
 
@@ -142,7 +142,7 @@ Console.WriteLineStyled(storyAboutRain, styleSheet);
 
 
 # Style Specific Regions of Text, Performing a Transformation Based on Surrounding Text
-```
+```c#
 StyleSheet styleSheet = new StyleSheet(Color.White);
 styleSheet.AddStyle("rain[a-z]*", Color.MediumSlateBlue,
     (unstyledInput, matchLocation, match) =>
@@ -163,7 +163,7 @@ Console.WriteLineStyled(storyAboutRain, styleSheet);
 
 
 # Convert Text to ASCII Art Using a Default Font
-```
+```c#
 int DA = 244;
 int V = 212;
 int ID = 255;
@@ -179,7 +179,7 @@ for (int i = 0; i < 3; i++)
 
 
 # Convert Text to ASCII Art Using [FIGlet](http://www.figlet.org/) Fonts
-```
+```c#
 FigletFont font = FigletFont.Load("chunky.flf");
 Figlet figlet = new Figlet(font);
 
@@ -191,7 +191,7 @@ Console.WriteLine(figlet.ToAscii("cream."), ColorTranslator.FromHtml("#B8DBFF"))
 
 
 # Style Collections With a Gradient
-```
+```c#
 List<char> chars = new List<char>()
 {
 	'r', 'e', 'x', 's', 'z', 'q', 'j', 'w', 't', 'a', 'b', 'c', 'l', 'm',
@@ -206,8 +206,8 @@ Console.WriteWithGradient(chars, Color.Yellow, Color.Fuchsia, 14);
 
 # Usage Notes
 
-Console colors can be set back to their defaults using the **Colorful.Console.ReplaceAllColorsWithDefaults** function.
+Console colors can be set back to their defaults using the `Colorful.Console.ReplaceAllColorsWithDefaults` function.
 
-Individual colors in the console's color palette can be replaced using the **Colorful.Console.ReplaceColor** function. 
+Individual colors in the console's color palette can be replaced using the `Colorful.Console.ReplaceColor` function. 
 
 **Colorful.Console** can only write to the console in 16 different colors (including the black that's used as the console's background, by default!) in a single console session. This is a limitation of the Windows console itself (ref: [MSDN](https://msdn.microsoft.com/en-us/library/windows/desktop/ms682091(v=vs.85).aspx)), and it's one that we weren't able to work our way around.  If you know of a workaround, let us know!
