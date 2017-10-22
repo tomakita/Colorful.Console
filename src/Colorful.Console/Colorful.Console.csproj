@@ -6,7 +6,7 @@
     <AssemblyTitle>Colorful.Console</AssemblyTitle>
     <VersionPrefix>1.1</VersionPrefix>
     <Authors>Tom Akita;Muhammad Rehan Saeed;Matt Furden</Authors>
-    <TargetFrameworks>netstandard1.3;net40;net45;net451;net452;net46;net461</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0;net40;net45;net451;net452;net46;net461</TargetFrameworks>
     <AssemblyName>Colorful.Console</AssemblyName>
     <PackageId>Colorful.Console</PackageId>
     <PackageTags>Style;Styled;Output;Colourful;Colorful;Console;Command;Line;ASCII;Art;FIGlet</PackageTags>
@@ -25,9 +25,7 @@
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
-  <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard1.3' ">
-    <PackageReference Include="CoreCompat.System.Drawing" Version="1.0.0-beta006" />
-    <PackageReference Include="Microsoft.CSharp" Version="4.0.1" />
+  <ItemGroup Condition=" '$(TargetFramework)' == 'netcoreapp2.0' ">
     <PackageReference Include="System.Collections" Version="4.0.11" />
     <PackageReference Include="System.Collections.Concurrent" Version="4.0.12" />
     <PackageReference Include="System.Console" Version="4.0.0" />
@@ -77,5 +75,8 @@
     <Reference Include="System" />
     <Reference Include="Microsoft.CSharp" />
   </ItemGroup>
+
+
+    
 
 </Project>
