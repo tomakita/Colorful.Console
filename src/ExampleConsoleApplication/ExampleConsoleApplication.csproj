@@ -6,7 +6,7 @@
     <AssemblyTitle>Colorful.Console Examples</AssemblyTitle>
     <VersionPrefix>1.1</VersionPrefix>
     <Authors>Tom Akita;Muhammad Rehan Saeed;Matt Furden</Authors>
-    <TargetFrameworks>net40;net45;net451;net452;net46;net461</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.0;net40;net45;net451;net452;net46;net461</TargetFrameworks>
     <AssemblyName>ExampleConsoleApplication</AssemblyName>
     <OutputType>Exe</OutputType>
     <PackageId>ExampleConsoleApplication</PackageId>
