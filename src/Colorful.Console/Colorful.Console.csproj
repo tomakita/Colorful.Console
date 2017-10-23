@@ -4,8 +4,8 @@
     <Description>Style your C# console output!</Description>
     <Copyright>@ Tom Akita. All rights Reserved.</Copyright>
     <AssemblyTitle>Colorful.Console</AssemblyTitle>
-    <VersionPrefix>1.1</VersionPrefix>
-    <Authors>Tom Akita;Muhammad Rehan Saeed;Matt Furden</Authors>
+    <VersionPrefix>1.2</VersionPrefix>
+    <Authors>Tom Akita;Muhammad Rehan Saeed;Matt Furden;Drew Noakes;Jamie Gould;Marcos Vinicius Maia;Sergey Korshunov;Adam Schiavone;IGusev</Authors>
     <TargetFrameworks>netstandard2.0;net40;net45;net451;net452;net46;net461</TargetFrameworks>
     <AssemblyName>Colorful.Console</AssemblyName>
     <PackageId>Colorful.Console</PackageId>
@@ -20,8 +20,8 @@
     <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
     <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
     <GenerateAssemblyCopyrightAttribute>false</GenerateAssemblyCopyrightAttribute>
-    <Version>1.1</Version>
-    <AssemblyVersion>1.1.0.0</AssemblyVersion>
+    <Version>1.2</Version>
+    <AssemblyVersion>1.2.0.0</AssemblyVersion>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 
