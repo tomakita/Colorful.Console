@@ -104,6 +104,16 @@ namespace Colorful
             }
         }
 
+        /// <summary>
+        /// Returns true if Colorful.Console is being run on Windows; returns false otherwise.
+        /// The usage of this method in Colorful.Console is meant to prevent the ColorMapper class
+        /// from being instantiated if Colorful.Console is not being run on Windows, due to an
+        /// implementation detail of the CLR.  Namely, we'd like to prevent ColorMapper's static
+        /// constructor from running if not on Windows, because that would attempt to import functions
+        /// from kernel32.dll, which won't exist if not on Windows.  For more info on this
+        /// implementation detail, see http://csharpindepth.com/Articles/General/Beforefieldinit.aspx
+        /// </summary>
+        /// <returns></returns>
         public static bool IsWindows()
         {
             bool isWindows = true;
