@@ -61,7 +61,8 @@ namespace Colorful
         /// <param name="newColor">The replacement color.</param>
         public void ReplaceColor(Color oldColor, Color newColor)
         {
-            if (!IsInCompatibilityMode)
+            // If the console exists and Colorful.Console is running on Windows.
+            if (!IsInCompatibilityMode && IsWindows())
             {
                 ConsoleColor consoleColor = colorStore.Replace(oldColor, newColor);
                 colorMapper.MapColor(consoleColor, newColor);
@@ -101,6 +102,17 @@ namespace Colorful
             {
                 return color.ToNearestConsoleColor();
             }
+        }
+
+        public static bool IsWindows()
+        {
+            bool isWindows = true;
+
+#if NETSTANDARD2_0
+            isWindows = RuntimeInformation.IsOSPlatform(OSPlatform.Windows);
+#endif
+
+            return isWindows;
         }
 
         private ConsoleColor GetConsoleColorNative(Color color)

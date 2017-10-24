@@ -5,7 +5,6 @@ using System.Linq;
 using System.Drawing;
 using System.Threading.Tasks;
 
-
 namespace Colorful
 {
     /// <summary>
@@ -386,14 +385,14 @@ namespace Colorful
             return new ColorStore(colorMap, consoleColorMap);
         }
 
-        private static void ReplaceAllColorsWithDefaults(bool isInCompatibilityMode)
+        private static void ReplaceAllColorsWithDefaults(bool isInCompatibilityMode, bool isWindows)
         {
             colorStore = GetColorStore();
             colorManagerFactory = new ColorManagerFactory();
             colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE, isInCompatibilityMode);
 
-            // There's no need to do this if in compatibility mode, as more than 16 colors won't be used, anyway.
-            if (!colorManager.IsInCompatibilityMode)
+            // There's no need to do this if in compatibility mode (or if not on Windows), as more than 16 colors won't be used, anyway.
+            if (!colorManager.IsInCompatibilityMode && isWindows)
             {
                 new ColorMapper().SetBatchBufferColors(defaultColorMap);
             }
