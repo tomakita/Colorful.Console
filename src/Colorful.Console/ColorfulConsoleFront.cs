@@ -298,8 +298,8 @@ namespace Colorful
         
         static Console()
         {
-            bool isInCompatibilityMode = false;
-            bool isWindows = ColorManager.IsWindows();
+            isInCompatibilityMode = false;
+            isWindows = ColorManager.IsWindows();
             try
             {
                 if (isWindows)
@@ -312,7 +312,7 @@ namespace Colorful
                 isInCompatibilityMode = true;
             }
 
-            ReplaceAllColorsWithDefaults(isInCompatibilityMode, isWindows);
+            ReplaceAllColorsWithDefaults();
             System.Console.CancelKeyPress += Console_CancelKeyPress;
         }
 
@@ -1324,6 +1324,19 @@ namespace Colorful
         public static void ReplaceColor(Color oldColor, Color newColor)
         {
             colorManager.ReplaceColor(oldColor, newColor);
+        }
+
+        public static void ReplaceAllColorsWithDefaults()
+        {
+            colorStore = GetColorStore();
+            colorManagerFactory = new ColorManagerFactory();
+            colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE, isInCompatibilityMode);
+
+            // There's no need to do this if in compatibility mode (or if not on Windows), as more than 16 colors won't be used, anyway.
+            if (!colorManager.IsInCompatibilityMode && isWindows)
+            {
+                new ColorMapper().SetBatchBufferColors(defaultColorMap);
+            }
         }
 
         public static void Beep(int frequency, int duration)

@@ -16,6 +16,8 @@ namespace Colorful
         private static ColorManagerFactory colorManagerFactory;
         private static ColorManager colorManager;
         private static Dictionary<string, COLORREF> defaultColorMap;
+        private static bool isInCompatibilityMode;
+        private static bool isWindows;
 
         // Limitation of the Windows console window.
         private const int MAX_COLOR_CHANGES = 16;
@@ -383,19 +385,6 @@ namespace Colorful
             consoleColorMap.TryAdd(ConsoleColor.Yellow, yellowEquivalent);
 
             return new ColorStore(colorMap, consoleColorMap);
-        }
-
-        private static void ReplaceAllColorsWithDefaults(bool isInCompatibilityMode, bool isWindows)
-        {
-            colorStore = GetColorStore();
-            colorManagerFactory = new ColorManagerFactory();
-            colorManager = colorManagerFactory.GetManager(colorStore, MAX_COLOR_CHANGES, INITIAL_COLOR_CHANGE_COUNT_VALUE, isInCompatibilityMode);
-
-            // There's no need to do this if in compatibility mode (or if not on Windows), as more than 16 colors won't be used, anyway.
-            if (!colorManager.IsInCompatibilityMode && isWindows)
-            {
-                new ColorMapper().SetBatchBufferColors(defaultColorMap);
-            }
         }
     }
 }
