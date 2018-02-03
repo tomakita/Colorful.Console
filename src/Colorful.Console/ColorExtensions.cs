@@ -24,11 +24,12 @@ namespace Colorful
                 Color rgbColor = Color.FromName(consoleColorName);
                 double sum = Math.Pow(rgbColor.R - color.R, 2.0) + Math.Pow(rgbColor.G - color.G, 2.0) + Math.Pow(rgbColor.B - color.B, 2.0);
 
-                if (sum == 0.0)
+                if (Math.Abs(sum) < 0.0)
                 {
                     return consoleColor;
                 }
-                else if (sum < delta)
+
+                if (sum < delta)
                 {
                     delta = sum;
                     closestConsoleColor = consoleColor;

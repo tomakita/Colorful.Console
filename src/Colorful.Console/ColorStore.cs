@@ -1,9 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -54,8 +50,7 @@ namespace Colorful
         /// <returns>The ConsoleColor key of the System.Drawing.Color object that was replaced in the ColorStore.</returns>
         public ConsoleColor Replace(Color oldColor, Color newColor)
         {
-            ConsoleColor consoleColorKey;
-            bool oldColorExistedInColorStore = Colors.TryRemove(oldColor, out consoleColorKey);
+            bool oldColorExistedInColorStore = Colors.TryRemove(oldColor, out var consoleColorKey);
 
             if (!oldColorExistedInColorStore)
             {

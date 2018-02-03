@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Colorful
+﻿namespace Colorful
 {
     /// <summary>
     /// Exposes methods used for creating (potentially inexact) copies of objects.

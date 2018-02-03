@@ -7,13 +7,7 @@
 
     public class FigletFont
     {
-        public static FigletFont Default
-        {
-            get
-            {
-                return Parse(DefaultFonts.SmallSlant);
-            }
-        }
+        public static FigletFont Default => Parse(DefaultFonts.SmallSlant);
 
         public int BaseLine { get; private set; }
 
@@ -74,7 +68,7 @@
         {
             if (fontContent == null) { throw new ArgumentNullException(nameof(fontContent)); }
 
-            return Parse(fontContent.Split(new string[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
+            return Parse(fontContent.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.None));
         }
 
         public static FigletFont Parse(IEnumerable<string> fontLines)

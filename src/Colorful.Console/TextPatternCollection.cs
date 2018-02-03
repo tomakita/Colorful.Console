@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 
 namespace Colorful
 {
@@ -17,7 +13,6 @@ namespace Colorful
         /// <param name="firstPattern">The first pattern to be added to the collection.</param>
         /// <param name="morePatterns">Other patterns to be added to the collection.</param>
         public TextPatternCollection(string[] patterns)
-            : base()
         {
             foreach (string pattern in patterns)
             {
@@ -43,7 +38,7 @@ namespace Colorful
         /// the input string.</returns>
         public override bool MatchFound(string input)
         {
-            return patterns.Any(pattern => pattern.GetMatchLocations(input).Count() > 0);
+            return patterns.Any(pattern => pattern.GetMatchLocations(input).Any());
         }
     }
 }

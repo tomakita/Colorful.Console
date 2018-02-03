@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
+﻿using System.Drawing;
 
 namespace Colorful
 {
@@ -16,23 +11,12 @@ namespace Colorful
         /// <summary>
         /// The object to be styled.
         /// </summary>
-        public object Target
-        {
-            get
-            {
-                return backingClass.Target;
-            }
-        }
+        public object Target => backingClass.Target;
+
         /// <summary>
         /// The color to be applied to the target.
         /// </summary>
-        public Color Color
-        {
-            get
-            {
-                return backingClass.Color;
-            }
-        }
+        public Color Color => backingClass.Color;
 
         private StyleClass<object> backingClass;
 

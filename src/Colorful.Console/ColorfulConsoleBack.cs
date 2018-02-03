@@ -335,14 +335,7 @@ namespace Colorful
 
         private static Figlet GetFiglet(FigletFont font = null)
         {
-            if (font == null)
-            {
-                return new Figlet();
-            }
-            else
-            {
-                return new Figlet(font);
-            }
+            return font == null ? new Figlet() : new Figlet(font);
         }
 
         private static readonly Color blackEquivalent = Color.FromArgb(0, 0, 0);

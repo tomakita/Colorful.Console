@@ -6,10 +6,6 @@ namespace Colorful
 {
     public sealed class ColorManagerFactory
     {
-        public ColorManagerFactory()
-        {
-        }
-
         public ColorManager GetManager(ColorStore colorStore, int maxColorChanges, int initialColorChangeCountValue, bool isInCompatibilityMode)
         {
             ColorMapper colorMapper = GetColorMapperSafe(ColorManager.IsWindows());

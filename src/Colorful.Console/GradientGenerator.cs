@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -17,25 +16,25 @@ namespace Colorful
             List<StyleClass<T>> gradients = new List<StyleClass<T>>();
             Color previousColor = Color.Empty;
             T previousItem = default(T);
-            Func<int, int> setProgressSymmetrically = remainder => remainder > 1 ? -1 : 0; // An attempt to make the gradient symmetric in the event that maxColorsInGradient does not divide input.Count evenly.
-            Func<int, int> resetProgressSymmetrically = progress => progress == 0 ? -1 : 0; // An attempt to make the gradient symmetric in the event that maxColorsInGradient does not divide input.Count evenly.
-            int colorChangeProgress = setProgressSymmetrically(numberOfGradesRemainder);
+            int SetProgressSymmetrically(int remainder) => remainder > 1 ? -1 : 0;
+            int ResetProgressSymmetrically(int progress) => progress == 0 ? -1 : 0;
+            int colorChangeProgress = SetProgressSymmetrically(numberOfGradesRemainder);
             int colorChangeCount = 0;
 
-            Func<int, bool> isFirstRun = index => index == 0;
-            Func<int, int, T, T, bool> shouldChangeColor = (index, progress, current, previous) => (progress > numberOfGrades - 1 && !current.Equals(previous) || isFirstRun(index));
-            Func<int, bool> canChangeColor = changeCount => changeCount < maxColorsInGradient;
+            bool IsFirstRun(int index) => index == 0;
+            bool ShouldChangeColor(int index, int progress, T current, T previous) => (progress > numberOfGrades - 1 && !current.Equals(previous) || IsFirstRun(index));
+            bool CanChangeColor(int changeCount) => changeCount < maxColorsInGradient;
 
             for (int i = 0; i < inputAsList.Count; i++)
             {
                 T currentItem = inputAsList[i];
                 colorChangeProgress++;
 
-                if (shouldChangeColor(i, colorChangeProgress, currentItem, previousItem) && canChangeColor(colorChangeCount))
+                if (ShouldChangeColor(i, colorChangeProgress, currentItem, previousItem) && CanChangeColor(colorChangeCount))
                 {
                     previousColor = GetGradientColor(i, startColor, endColor, inputAsList.Count);
                     previousItem = currentItem;
-                    colorChangeProgress = resetProgressSymmetrically(colorChangeProgress);
+                    colorChangeProgress = ResetProgressSymmetrically(colorChangeProgress);
                     colorChangeCount++;
                 }
 

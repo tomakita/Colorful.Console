@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Colorful
 {
@@ -14,11 +10,11 @@ namespace Colorful
         /// <summary>
         /// The index of the beginning of the pattern match.
         /// </summary>
-        public int Beginning { get; private set; }
+        public int Beginning { get; }
         /// <summary>
         /// The index of the end of the pattern match.
         /// </summary>
-        public int End { get; private set; }
+        public int End { get; }
 
         /// <summary>
         /// Exposes properties describing the indices of the beginning and end of a pattern match.
@@ -43,15 +39,12 @@ namespace Colorful
                 return false;
             }
 
-            return this.Beginning == other.Beginning
-                && this.End == other.End;
+            return Beginning == other.Beginning
+                && End == other.End;
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as MatchLocation);
-        }
-
+        public override bool Equals(object obj) => Equals(obj as MatchLocation);
+       
         public override int GetHashCode()
         {
             int hash = 163;
@@ -64,12 +57,9 @@ namespace Colorful
 
         public int CompareTo(MatchLocation other)
         {
-            return this.Beginning.CompareTo(other.Beginning);
+            return Beginning.CompareTo(other.Beginning);
         }
 
-        public override string ToString()
-        {
-            return Beginning.ToString() + ", " + End.ToString();
-        }
+        public override string ToString() => Beginning + ", " + End;
     }
 }

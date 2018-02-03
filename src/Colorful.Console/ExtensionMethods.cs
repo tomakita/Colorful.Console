@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace Colorful
 {
@@ -60,10 +56,7 @@ namespace Colorful
 
             if (inputAsArray != null)
             {
-                foreach (dynamic item in inputAsArray)
-                {
-                    output.Add(item);
-                }
+                output.AddRange(inputAsArray);
             }
             else
             {
