@@ -16,8 +16,8 @@ namespace Colorful
             List<StyleClass<T>> gradients = new List<StyleClass<T>>();
             Color previousColor = Color.Empty;
             T previousItem = default(T);
-            int SetProgressSymmetrically(int remainder) => remainder > 1 ? -1 : 0;
-            int ResetProgressSymmetrically(int progress) => progress == 0 ? -1 : 0;
+            int SetProgressSymmetrically(int remainder) => remainder > 1 ? -1 : 0; // An attempt to make the gradient symmetric in the event that maxColorsInGradient does not divide input.Count evenly.
+            int ResetProgressSymmetrically(int progress) => progress == 0 ? -1 : 0; // An attempt to make the gradient symmetric in the event that maxColorsInGradient does not divide input.Count evenly.
             int colorChangeProgress = SetProgressSymmetrically(numberOfGradesRemainder);
             int colorChangeCount = 0;
 
