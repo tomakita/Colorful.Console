@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -32,7 +29,7 @@ namespace Colorful
 
         public new PatternBasedColorAlternator<T> Prototype()
         {
-            return new PatternBasedColorAlternator<T>(this.patternMatcher.Prototype(), this.Colors.DeepCopy().ToArray());
+            return new PatternBasedColorAlternator<T>(patternMatcher.Prototype(), Colors.DeepCopy().ToArray());
         }
 
         protected override ColorAlternator PrototypeCore()

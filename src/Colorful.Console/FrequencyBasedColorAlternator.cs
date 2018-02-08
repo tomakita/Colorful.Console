@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -14,7 +11,7 @@ namespace Colorful
     public sealed class FrequencyBasedColorAlternator : ColorAlternator, IPrototypable<FrequencyBasedColorAlternator>
     {
         private int alternationFrequency;
-        private int writeCount = 0;
+        private int writeCount;
 
         /// <summary>
         /// Exposes methods and properties used for alternating over a set of colors according to
@@ -31,7 +28,7 @@ namespace Colorful
 
         public new FrequencyBasedColorAlternator Prototype()
         {
-            return new FrequencyBasedColorAlternator(this.alternationFrequency, this.Colors.DeepCopy().ToArray());
+            return new FrequencyBasedColorAlternator(alternationFrequency, Colors.DeepCopy().ToArray());
         }
 
         protected override ColorAlternator PrototypeCore()

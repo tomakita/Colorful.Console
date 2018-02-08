@@ -234,15 +234,13 @@ namespace Colorful
 
         private Exception CreateException(int errorCode)
         {
-            int ERROR_INVALID_HANDLE = 6;
+            const int ERROR_INVALID_HANDLE = 6;
             if (errorCode == ERROR_INVALID_HANDLE) // Raised if the console is being run via another application, for example.
             {
                 return new ConsoleAccessException();
             }
-            else
-            {
-                return new ColorMappingException(errorCode);
-            }
+
+            return new ColorMappingException(errorCode);
         }
     }
 }

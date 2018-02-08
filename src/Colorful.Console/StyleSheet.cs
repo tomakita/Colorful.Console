@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using System.Drawing;
 
 namespace Colorful
@@ -54,8 +50,8 @@ namespace Colorful
         /// can be applied to the target.</param>
         public void AddStyle(string target, Color color, Styler.MatchFoundLite matchHandler)
         {
-            Styler.MatchFound wrapper = (s, l, m) => matchHandler.Invoke(m);
-            Styler styler = new Styler(target, color, wrapper);
+            string Wrapper(string s, MatchLocation l, string m) => matchHandler.Invoke(m);
+            Styler styler = new Styler(target, color, Wrapper);
 
             Styles.Add(styler);
         }
@@ -67,8 +63,8 @@ namespace Colorful
         /// <param name="color">The color to be applied to the target.</param>
         public void AddStyle(string target, Color color)
         {
-            Styler.MatchFound handler = (s, l, m) => m;
-            Styler styler = new Styler(target, color, handler);
+            string Handler(string s, MatchLocation l, string m) => m;
+            Styler styler = new Styler(target, color, Handler);
 
             Styles.Add(styler);
         }

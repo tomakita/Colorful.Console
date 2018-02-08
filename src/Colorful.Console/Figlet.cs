@@ -13,14 +13,12 @@
 
         public Figlet()
         {
-            this.font = FigletFont.Default;
+            font = FigletFont.Default;
         }
 
         public Figlet(FigletFont font)
         {
-            if (font == null) { throw new ArgumentNullException(nameof(font)); }
-
-            this.font = font;
+            this.font = font ?? throw new ArgumentNullException(nameof(font));
         }
 
         public StyledString ToAscii(string value)
@@ -43,7 +41,7 @@
                 for (int c = 0; c < value.Length; c++) 
                 {
                     char character = value[c];
-                    string fragment = GetCharacter(this.font, character, line);
+                    string fragment = GetCharacter(font, character, line);
 
                     stringBuilder.Append(fragment);
                     CalculateCharacterGeometries(fragment, c, runningWidthTotal, line, characterGeometry, characterIndexGeometry);
@@ -54,10 +52,13 @@
                 stringBuilder.AppendLine();
             }
 
-            StyledString styledString = new StyledString(value, stringBuilder.ToString());
-            styledString.CharacterGeometry = characterGeometry;
-            styledString.CharacterIndexGeometry = characterIndexGeometry;
-            styledString.ColorGeometry = colorGeometry;
+            StyledString styledString =
+                new StyledString(value, stringBuilder.ToString())
+                {
+                    CharacterGeometry = characterGeometry,
+                    CharacterIndexGeometry = characterIndexGeometry,
+                    ColorGeometry = colorGeometry
+                };
 
             return styledString;
         }

@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -16,11 +12,12 @@ namespace Colorful
         /// <summary>
         /// The object to be styled.
         /// </summary>
-        public T Target { get; protected set; }
+        public T Target { get; set; }
+
         /// <summary>
         /// The color to be applied to the target.
         /// </summary>
-        public Color Color { get; protected set; }
+        public Color Color { get; set; }
 
         /// <summary>
         /// Exposes methods and properties that represent a style classification.
@@ -47,15 +44,12 @@ namespace Colorful
                 return false;
             }
 
-            return this.Target.Equals(other.Target)
-                && this.Color == other.Color;
+            return Target.Equals(other.Target)
+                && Color == other.Color;
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as StyleClass<T>);
-        }
-
+        public override bool Equals(object obj)=> Equals(obj as StyleClass<T>);
+        
         public override int GetHashCode()
         {
             int hash = 163;

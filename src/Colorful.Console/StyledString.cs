@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -18,12 +15,12 @@ namespace Colorful
         /// <summary>
         /// The one-dimensional representation of the StyledString.  Maps 1:1 with System.String.
         /// </summary>
-        public string AbstractValue { get; private set; }
+        public string AbstractValue { get; }
         /// <summary>
         /// The n-dimensional (n &le; 2, in this case) representation of the StyledString.  
         /// In the case of FIGlet fonts, for example, this would be the string's two-dimensional FIGlet representation.
         /// </summary>
-        public string ConcreteValue { get; private set; }
+        public string ConcreteValue { get; }
 
         //
         // The three geometry members, below, should be encapsulated into a single data structure.
@@ -66,15 +63,12 @@ namespace Colorful
                 return false;
             }
 
-            return this.AbstractValue == other.AbstractValue
-                && this.ConcreteValue == other.ConcreteValue;
+            return AbstractValue == other.AbstractValue
+                && ConcreteValue == other.ConcreteValue;
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as StyledString);
-        }
-
+        public override bool Equals(object obj) => Equals(obj as StyledString);
+       
         // Does not take styling information into account...and it needs to be taken into account.
         public override int GetHashCode()
         {
@@ -90,9 +84,6 @@ namespace Colorful
         /// Returns the StyledString's concrete representation.
         /// </summary>
         /// <returns></returns>
-        public override string ToString()
-        {
-            return ConcreteValue;
-        }
+        public override string ToString() => ConcreteValue;
     }
 }

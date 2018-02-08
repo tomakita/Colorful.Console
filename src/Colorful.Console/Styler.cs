@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -57,13 +53,10 @@ namespace Colorful
             }
 
             return base.Equals(other)
-                && this.MatchFoundHandler == other.MatchFoundHandler;
+                && MatchFoundHandler == other.MatchFoundHandler;
         }
 
-        public override bool Equals(object obj)
-        {
-            return Equals(obj as Styler);
-        }
+        public override bool Equals(object obj) => Equals(obj as Styler);
 
         public override int GetHashCode()
         {

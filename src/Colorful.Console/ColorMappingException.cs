@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Colorful
 {
@@ -23,7 +19,7 @@ namespace Colorful
         /// <param name="errorCode">The underlying Win32 error code associated with the exception that
         /// has been trapped.</param>
         public ColorMappingException(int errorCode)
-            : base(String.Format("Color conversion failed with system error code {0}!", errorCode))
+            : base(string.Format("Color conversion failed with system error code {0}!", errorCode))
         {
             ErrorCode = errorCode;
         }

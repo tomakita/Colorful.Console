@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 using System.Runtime.InteropServices;
 
@@ -62,11 +59,9 @@ namespace Colorful
         public void ReplaceColor(Color oldColor, Color newColor)
         {
             // If the console exists and Colorful.Console is running on Windows.
-            if (!IsInCompatibilityMode && IsWindows())
-            {
-                ConsoleColor consoleColor = colorStore.Replace(oldColor, newColor);
-                colorMapper.MapColor(consoleColor, newColor);
-            }
+            if (IsInCompatibilityMode || !IsWindows()) return;
+            ConsoleColor consoleColor = colorStore.Replace(oldColor, newColor);
+            colorMapper.MapColor(consoleColor, newColor);
         }
 
         /// <summary>
@@ -137,14 +132,7 @@ namespace Colorful
                 colorChangeCount++;
             }
 
-            if (colorStore.Colors.ContainsKey(color))
-            {
-                return colorStore.Colors[color];
-            }
-            else
-            {
-                return colorStore.Colors.Last().Value;
-            }
+            return colorStore.Colors.ContainsKey(color) ? colorStore.Colors[color] : colorStore.Colors.Last().Value;
         }
 
         private bool CanChangeColor()

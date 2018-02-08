@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Drawing;
 
 namespace Colorful
@@ -27,7 +24,7 @@ namespace Colorful
 
             foreach (StyleClass<TextPattern> styleClass in styleSheet.Styles)
             {
-                matchFoundHandlers.Add(styleClass, (styleClass as Styler).MatchFoundHandler);
+                matchFoundHandlers.Add(styleClass, (styleClass as Styler)?.MatchFoundHandler);
             }
         }
         
@@ -90,9 +87,8 @@ namespace Colorful
                 chocolateEnd = currentLocation.End;
 
                 string vanilla = input.Substring(vanillaStart, vanillaEnd - vanillaStart);
-                string chocolate = input.Substring(chocolateStart, chocolateEnd - chocolateStart);
 
-                chocolate = matchFoundHandlers[styledLocation.Key].Invoke(input, styledLocation.Value, input.Substring(chocolateStart, chocolateEnd - chocolateStart));
+                var chocolate = matchFoundHandlers[styledLocation.Key].Invoke(input, styledLocation.Value, input.Substring(chocolateStart, chocolateEnd - chocolateStart));
 
                 if (vanilla != "")
                 {
