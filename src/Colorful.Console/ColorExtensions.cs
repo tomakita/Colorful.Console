@@ -24,7 +24,8 @@ namespace Colorful
                 Color rgbColor = Color.FromName(consoleColorName);
                 double sum = Math.Pow(rgbColor.R - color.R, 2.0) + Math.Pow(rgbColor.G - color.G, 2.0) + Math.Pow(rgbColor.B - color.B, 2.0);
 
-                if (Math.Abs(sum) < 0.0)
+                double epsilon = 0.001;
+                if (sum < epsilon)
                 {
                     return consoleColor;
                 }
