@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("Microsoft")]
 [assembly: AssemblyProduct("Colorful.Console")]
-[assembly: AssemblyCopyright("Copyright © Tom Akita 2017")]
+[assembly: AssemblyCopyright("Copyright © Tom Akita 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
