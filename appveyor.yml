@@ -10,4 +10,4 @@ before_build:
 build:
   verbosity: minimal
 artifacts:
-- path: bin\Debug\Colorful.Console.*.*.*.nupkg
+- path: src\Colorful.Console\bin\Debug\Colorful.Console.*.*.*.nupkg
