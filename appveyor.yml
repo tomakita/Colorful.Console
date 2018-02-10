@@ -1,5 +1,10 @@
-version: 1.0.{build}
+version: 1.2.{build}
 image: Visual Studio 2017
+dotnet_csproj:
+  patch: true
+  file: '**\*.csproj'
+  version: '{version}'
+  assembly_version: '{version}'
 before_build:
 - cmd: nuget restore
 build:
