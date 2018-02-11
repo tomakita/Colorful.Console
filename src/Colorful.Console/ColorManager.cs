@@ -132,7 +132,8 @@ namespace Colorful
                 colorChangeCount++;
             }
 
-            return colorStore.Colors.ContainsKey(color) ? colorStore.Colors[color] : colorStore.Colors.Last().Value;
+            ConsoleColor nativeColor;
+            return colorStore.Colors.TryGetValue(color, out nativeColor) ? nativeColor : colorStore.Colors.Last().Value;
         }
 
         private bool CanChangeColor()
