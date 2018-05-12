@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
 using System.Text;
+using System.Linq;
 
 namespace Colorful
 {
@@ -880,6 +881,12 @@ namespace Colorful
             params object[] args)
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format, args, styledColor, defaultColor);
+        }
+
+        public static void WriteLineFormatted(string format, Color styledColor, Color defaultColor,
+            IEnumerable<object> args)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format, args.ToArray(), styledColor, defaultColor);
         }
 
         public static void WriteLineFormatted(string format, Color defaultColor, params Formatter[] args)
