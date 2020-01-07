@@ -78,7 +78,7 @@ namespace Colorful
 
                 if (previousLocation.End > currentLocation.Beginning)
                 {
-                    previousLocation = new MatchLocation(0, 0);
+                    currentLocation = new MatchLocation(previousLocation.End, System.Math.Max(previousLocation.End, currentLocation.End));
                 }
 
                 int vanillaStart = previousLocation.End;
