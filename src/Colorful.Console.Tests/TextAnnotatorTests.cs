@@ -15,13 +15,25 @@ namespace Colorful.Console.Tests
         private static readonly string dummyMatchingString = "cat";
         private static readonly string dummyNonMatchingString = "dog";
         private static readonly string dummyPattern = "a";
+        private static readonly string dummyOverlappingPatternOne = "ca";
+        private static readonly string dummyOverlappingPatternTwo = "at";
         private static readonly Color dummyDefaultColor = Color.Red;
         private static readonly Color dummyStyledColor = Color.Yellow;
+        private static readonly Color dummyStyledColorTwo = Color.Green;
 
         private StyleSheet GetDummyStyleSheet()
         {
             StyleSheet styleSheet = new StyleSheet(dummyDefaultColor);
             styleSheet.AddStyle(dummyPattern, dummyStyledColor);
+
+            return styleSheet;
+        }
+
+        private StyleSheet GetDummyOverlappingStyleSheet()
+        {
+            StyleSheet styleSheet = new StyleSheet(dummyDefaultColor);
+            styleSheet.AddStyle(dummyOverlappingPatternOne, dummyStyledColor);
+            styleSheet.AddStyle(dummyOverlappingPatternTwo, dummyStyledColorTwo);
 
             return styleSheet;
         }
@@ -46,6 +58,19 @@ namespace Colorful.Console.Tests
             List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(dummyMatchingString);
 
             Assert.Equal(annotationMap.Count, 3);
+        }
+
+        [Fact]
+        public void GetAnnotationMap_CoversOverlappingMatchesWithLeftmostOnTop_WhenMatchedBlocksOverlap()
+        {
+            StyleSheet styleSheet = GetDummyOverlappingStyleSheet();
+            TextAnnotator annotator = new TextAnnotator(styleSheet);
+
+            List<KeyValuePair<string, Color>> annotationMap = annotator.GetAnnotationMap(dummyMatchingString);
+
+            Assert.Equal(2, annotationMap.Count);
+            Assert.Equal(new KeyValuePair<string, Color>("ca", Color.Yellow), annotationMap[0]);
+            Assert.Equal(new KeyValuePair<string, Color>("t", Color.Green), annotationMap[1]);
         }
 
         [Fact]
