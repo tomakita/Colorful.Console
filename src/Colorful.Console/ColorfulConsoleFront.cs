@@ -846,7 +846,7 @@ namespace Colorful
         {
             WriteInColorStyled(WRITELINE_TRAILER, format, arg0, styleSheet);
         }
-
+        
         public static void WriteLineFormatted(string format, object arg0, Color styledColor, Color defaultColor)
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format, arg0, styledColor, defaultColor);
@@ -855,6 +855,16 @@ namespace Colorful
         public static void WriteLineFormatted(string format, Formatter arg0, Color defaultColor)
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format, arg0, defaultColor);
+        }
+        
+        public static void WriteLineFormatted(FormattableString format, object arg0, Color styledColor, Color defaultColor)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), arg0, styledColor, defaultColor);
+        }
+        
+        public static void WriteLineFormatted(FormattableString format, Formatter arg0, Color defaultColor)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), arg0, defaultColor);
         }
 
         public static void WriteLine(string format, params object[] args)
@@ -892,6 +902,24 @@ namespace Colorful
         public static void WriteLineFormatted(string format, Color defaultColor, params Formatter[] args)
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format, args, defaultColor);
+        }
+        
+        public static void WriteLineFormatted(FormattableString format, Color styledColor, Color defaultColor, 
+            params object[] args)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), args, styledColor, defaultColor);
+        }
+        
+        public static void WriteLineFormatted(FormattableString format, Color styledColor, Color defaultColor, 
+            IEnumerable<object> args)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), args.ToArray(), styledColor, defaultColor);
+        }
+
+        public static void WriteLineFormatted(FormattableString format, Color defaultColor, 
+            params Formatter[] args)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), args, defaultColor);
         }
 
         public static void WriteLine(char[] buffer, int index, int count)
