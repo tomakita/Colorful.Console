@@ -856,16 +856,6 @@ namespace Colorful
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format, arg0, defaultColor);
         }
-        
-        public static void WriteLineFormatted(FormattableString format, object arg0, Color styledColor, Color defaultColor)
-        {
-            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), arg0, styledColor, defaultColor);
-        }
-        
-        public static void WriteLineFormatted(FormattableString format, Formatter arg0, Color defaultColor)
-        {
-            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), arg0, defaultColor);
-        }
 
         public static void WriteLine(string format, params object[] args)
         {
@@ -904,6 +894,17 @@ namespace Colorful
             WriteInColorFormatted(WRITELINE_TRAILER, format, args, defaultColor);
         }
         
+#if (!NET40 && !NET45 && !NET451 && !NET452)
+		public static void WriteLineFormatted(FormattableString format, object arg0, Color styledColor, Color defaultColor)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), arg0, styledColor, defaultColor);
+        }
+        
+        public static void WriteLineFormatted(FormattableString format, Formatter arg0, Color defaultColor)
+        {
+            WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), arg0, defaultColor);
+        }
+		
         public static void WriteLineFormatted(FormattableString format, Color styledColor, Color defaultColor, 
             params object[] args)
         {
@@ -921,6 +922,7 @@ namespace Colorful
         {
             WriteInColorFormatted(WRITELINE_TRAILER, format.ToString(), args, defaultColor);
         }
+#endif
 
         public static void WriteLine(char[] buffer, int index, int count)
         {
