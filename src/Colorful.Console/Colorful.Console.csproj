@@ -11,8 +11,7 @@
     <PackageId>Colorful.Console</PackageId>
     <PackageTags>Style;Styled;Output;Colourful;Colorful;Console;Command;Line;ASCII;Art;FIGlet</PackageTags>
     <PackageReleaseNotes>Bug fixes</PackageReleaseNotes>
-    <PackageIconUrl>http://colorfulconsole.com/images/colorful_icon_ngsize.png</PackageIconUrl>
-    <PackageProjectUrl>http://colorfulconsole.com/</PackageProjectUrl>
+    <PackageIconUrl>https://github.com/tomakita/Colorful.Console/blob/master/static/colorful_icon_ngsize.png</PackageIconUrl>
     <PackageLicenseUrl>https://github.com/tomakita/Colorful.Console/blob/master/LICENSE.md</PackageLicenseUrl>
     <GenerateAssemblyTitleAttribute>false</GenerateAssemblyTitleAttribute>
     <GenerateAssemblyDescriptionAttribute>false</GenerateAssemblyDescriptionAttribute>
