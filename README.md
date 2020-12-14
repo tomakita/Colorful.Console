@@ -3,7 +3,7 @@
 
 **Colorful.Console** is a C# library that wraps around the `System.Console` class, exposing enhanced styling functionality.
 
-![Colorful.Console icon](http://colorfulconsole.com/images/colorful_icon_ngsize.png)
+![Colorful.Console icon](https://github.com/tomakita/Colorful.Console/blob/master/static/colorful_icon_ngsize.png)
 
 # How to Get It
 
