@@ -21,7 +21,7 @@ using Console = Colorful.Console;
 Console.WriteLine("console in pink", Color.Pink);
 Console.WriteLine("console in default");
 ```
-![Basic Example](http://colorfulconsole.com/images/basic_x.png)
+![Basic Example](https://github.com/tomakita/Colorful.Console/blob/master/static/basic_x.png)
 
 
 # Write With Full System.Drawing.Color Support
@@ -37,7 +37,7 @@ for (int i = 0; i < 10; i++)
     b -= 9;
 }
 ```
-![Write With Full System.Drawing.Color Support](http://colorfulconsole.com/images/rgb_x.png)
+![Write With Full System.Drawing.Color Support](https://github.com/tomakita/Colorful.Console/blob/master/static/rgb_x.png)
 
 
 # Format Text Using Two Colors
@@ -59,7 +59,7 @@ string[] fruits = new string[]
 
 Console.WriteLineFormatted(dream, Color.LightGoldenrodYellow, Color.Gray, fruits);
 ```
-![Format Text Using Two Colors](http://colorfulconsole.com/images/formatter_x1.png)
+![Format Text Using Two Colors](https://github.com/tomakita/Colorful.Console/blob/master/static/formatter_x1.png)
 
 
 # Format Text Using Several Colors
@@ -81,7 +81,7 @@ Formatter[] fruits = new Formatter[]
 
 Console.WriteLineFormatted(dream, Color.Gray, fruits);
 ```
-![Format Text Using Several Colors](http://colorfulconsole.com/images/formatter_x2.png)
+![Format Text Using Several Colors](https://github.com/tomakita/Colorful.Console/blob/master/static/formatter_x2.png)
 
 
 # Alternate Between 2 or More Colors Based on Number of Console Writes
@@ -94,7 +94,7 @@ for (int i = 0; i < 15; i++)
     Console.WriteLineAlternating("cats", alternator);
 }
 ```
-![Alternate Between 2 or More Colors Based on Number of Console Writes](http://colorfulconsole.com/images/alternator_x2.png)
+![Alternate Between 2 or More Colors Based on Number of Console Writes](https://github.com/tomakita/Colorful.Console/blob/master/static/alternator_x2.png)
 
 
 # Alternate Between 2 or More Colors Based on 1 or More Regular Expressions
@@ -118,7 +118,7 @@ for (int i = 0; i < 15; i++)
     Console.WriteLineAlternating(catMessage, alternator);
 }
 ```
-![Alternate Between 2 or More Colors Based on 1 or More Regular Expressions](http://colorfulconsole.com/images/alternator_x1.png)
+![Alternate Between 2 or More Colors Based on 1 or More Regular Expressions](https://github.com/tomakita/Colorful.Console/blob/master/static/alternator_x1.png)
 
 
 # Style Specific Regions of Text
@@ -128,7 +128,7 @@ styleSheet.AddStyle("rain[a-z]*", Color.MediumSlateBlue);
 
 Console.WriteLineStyled(storyAboutRain, styleSheet);
 ```
-![Alternate Between 2 or More Colors Based on 1 or More Regular Expressions](http://colorfulconsole.com/images/styler_x1.png)
+![Alternate Between 2 or More Colors Based on 1 or More Regular Expressions](https://github.com/tomakita/Colorful.Console/blob/master/static/styler_x1.png)
 
 
 # Style Specific Regions of Text, Performing a Simple Transformation
@@ -138,7 +138,7 @@ styleSheet.AddStyle("rain[a-z]*", Color.MediumSlateBlue, match => match.ToUpper(
 
 Console.WriteLineStyled(storyAboutRain, styleSheet);
 ```
-![Style Specific Regions of Text, Performing a Simple Transformation](http://colorfulconsole.com/images/styler_x2.png)
+![Style Specific Regions of Text, Performing a Simple Transformation](https://github.com/tomakita/Colorful.Console/blob/master/static/styler_x2.png)
 
 
 # Style Specific Regions of Text, Performing a Transformation Based on Surrounding Text
@@ -159,7 +159,7 @@ styleSheet.AddStyle("rain[a-z]*", Color.MediumSlateBlue,
 
 Console.WriteLineStyled(storyAboutRain, styleSheet);
 ```
-![Style Specific Regions of Text, Performing a Simple Transformation](http://colorfulconsole.com/images/styler_x3.png)
+![Style Specific Regions of Text, Performing a Simple Transformation](https://github.com/tomakita/Colorful.Console/blob/master/static/styler_x3.png)
 
 
 # Convert Text to ASCII Art Using a Default Font
@@ -175,7 +175,7 @@ for (int i = 0; i < 3; i++)
     V -= 36;
 }
 ```
-![Convert Text to ASCII Art Using a Default Font](http://colorfulconsole.com/images/ascii_x1.png)
+![Convert Text to ASCII Art Using a Default Font](https://github.com/tomakita/Colorful.Console/blob/master/static/ascii_x1.png)
 
 
 # Convert Text to ASCII Art Using [FIGlet](http://www.figlet.org/) Fonts
@@ -187,7 +187,7 @@ Console.WriteLine(figlet.ToAscii("Belvedere"), ColorTranslator.FromHtml("#8AFFEF
 Console.WriteLine(figlet.ToAscii("ice"), ColorTranslator.FromHtml("#FAD6FF"));
 Console.WriteLine(figlet.ToAscii("cream."), ColorTranslator.FromHtml("#B8DBFF"));
 ```
-![Convert Text to ASCII Art Using a Default Font](http://colorfulconsole.com/images/ascii_x2.png)
+![Convert Text to ASCII Art Using a Default Font](https://github.com/tomakita/Colorful.Console/blob/master/static/ascii_x2.png)
 
 
 # Style Collections With a Gradient
@@ -201,7 +201,7 @@ List<char> chars = new List<char>()
 };
 Console.WriteWithGradient(chars, Color.Yellow, Color.Fuchsia, 14);
 ```
-![Style Collections With a Gradient](http://colorfulconsole.com/images/gradw_x.png)
+![Style Collections With a Gradient](https://github.com/tomakita/Colorful.Console/blob/master/static/gradw_x.png)
 
 
 # Usage Notes
